@@ -1,0 +1,16 @@
+ir\phgint\Animals.class
+ir\phgint\Enum\Foods.class
+ir\phgint\Humans.class
+ir\phgint\Enum\Habitats.class
+ir\phgint\Enum\Gender.class
+ir\phgint\Janevaran.class
+ir\phgint\DeepCopyable.class
+ir\phgint\ShallowCopyable.class
+ir\phgint\Enum\AnimalBehavior.class
+ir\phgint\App.class
+ir\phgint\Enum\Ages.class
+ir\phgint\Enum\Pregnant.class
+ir\phgint\Profile.class
+ir\phgint\Serialization.class
+ir\phgint\Birds.class
+ir\phgint\Mammals.class
