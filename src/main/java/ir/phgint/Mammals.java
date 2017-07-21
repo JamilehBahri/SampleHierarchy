@@ -66,7 +66,7 @@ public abstract class Mammals extends Janevaran {
         return hash;
     }
 
-    //ok
+
     public Mammals clone() throws CloneNotSupportedException {
         Mammals mm = (Mammals) super.clone();
         mm.hasBackbone = hasBackbone;
@@ -82,24 +82,20 @@ public abstract class Mammals extends Janevaran {
                 '}';
     }
 
-    ////// ok
     public void deepCopyFrom(Mammals mammals) {
 
         super.deepCopyFrom(mammals);
         this.hasHair = mammals.hasHair;
         this.hasBackbone = mammals.hasBackbone;
     }
-//ok
-    public Mammals deepCopy() {
-        return (Mammals) super.deepCopy();
-//        try {
-//            this.clone();
-//        } catch (CloneNotSupportedException e) {
-//            e.printStackTrace();
-//        }
 
+    public Mammals deepCopy() {
+        Mammals mammals = (Mammals) super.deepCopy();
+        mammals.hasHair = this.hasHair;
+        mammals.hasBackbone = this.hasBackbone;
+        return mammals;
     }
-    //ok
+
     public void shallowCopyFrom(Mammals mammals) {
 
         super.shallowCopyFrom(mammals);
@@ -113,16 +109,8 @@ public abstract class Mammals extends Janevaran {
         j.hasHair = this.hasHair;
         j.hasBackbone = this.hasBackbone;
         return j;
-//        Mammals j = null;
-//        try {
-//            j = this.clone();
-//        } catch (CloneNotSupportedException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
-//ok
     public int compareTo(Mammals o) {
         int res = super.compareTo(o);
         if (res == 0) {

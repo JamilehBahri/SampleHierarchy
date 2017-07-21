@@ -5,13 +5,14 @@ import ir.phgint.Enum.*;
 import java.io.Serializable;
 
 
-public class Birds extends Janevaran{
+public class Birds extends Janevaran {
     private boolean canFly;
     private boolean hasFeather;
 
     private Birds(Profile profile) {
         super(profile);
     }
+
     private Birds(String name, boolean canFly, boolean hasFeather, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
         super(name, foods, t, habitats, pregnant);
         this.canFly = canFly;
@@ -26,7 +27,7 @@ public class Birds extends Janevaran{
     }
 
 
-    public static Birds getBirdsInstance(Profile profile){
+    public static Birds getBirdsInstance(Profile profile) {
         return new Birds(profile);
     }
 
@@ -67,12 +68,12 @@ public class Birds extends Janevaran{
 
     public boolean equals(Birds birds) {
 
-        if ( birds== this)
+        if (birds == this)
             return true;
-        if(birds==null)
+        if (birds == null)
             return false;
 
-        return super.equals(birds)&&  (this.canFly == birds.canFly)&& (this.hasFeather == birds.hasFeather);
+        return super.equals(birds) && (this.canFly == birds.canFly) && (this.hasFeather == birds.hasFeather);
     }
 
     public int hashCode() {
@@ -81,7 +82,8 @@ public class Birds extends Janevaran{
         hash = 31 * hash + (this.hasFeather == true ? 1 : 0);
         return hash;
     }
-//ok
+
+    //ok
     public Birds clone() throws CloneNotSupportedException {
         Birds bb = (Birds) super.clone();
         bb.canFly = canFly;
@@ -89,21 +91,23 @@ public class Birds extends Janevaran{
         return bb;
     }
 
-    //ok
-    public void deepCopyFrom(Birds birds)  {
+    public void deepCopyFrom(Birds birds) {
 
         super.deepCopyFrom(birds);
-        this.canFly =birds.canFly;
-        this.hasFeather=birds.hasFeather;
+        this.canFly = birds.canFly;
+        this.hasFeather = birds.hasFeather;
 
     }
 
-    public Birds deepCopy()  {
+    public Birds deepCopy() {
 
-        super.deepCopy();
-        return new Birds(this);
+        Birds birds = (Birds) super.deepCopy();
+        birds.canFly = this.canFly;
+        birds.hasFeather = this.hasFeather;
+        return birds;
+
     }
-    //ok
+
     public void shallowCopyFrom(Birds birds) {
 
         super.shallowCopyFrom(birds);
@@ -115,15 +119,14 @@ public class Birds extends Janevaran{
 
         Birds b = (Birds) super.shallowCopy();
         b.canFly = this.canFly;
-        b.hasFeather=this.hasFeather;
+        b.hasFeather = this.hasFeather;
         return b;
     }
-//ok
+
     public int compareTo(Birds o) {
 
-        int res= super.compareTo(o) ;
-        if(res==0)
-        {
+        int res = super.compareTo(o);
+        if (res == 0) {
             if (Boolean.valueOf(canFly).compareTo(Boolean.valueOf(o.canFly)) > 0)
                 return 1;
             else if (Boolean.valueOf(canFly).compareTo(Boolean.valueOf(o.canFly)) < 0)

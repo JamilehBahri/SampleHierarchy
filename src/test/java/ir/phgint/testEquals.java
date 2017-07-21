@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 
-public class testEquals {
+public class TestEquals {
 
     private Animals animals1, animals2, a4;
     private Humans humans1, humans2;
@@ -36,44 +36,36 @@ public class testEquals {
     }
 
     @Test
-    public void testEqualsAnimalsRef() {
-        Assert.assertTrue(animals1.equals(animals2));
+    public void equalsAnimalsRefTest() {
+        Assert.assertNotEquals(animals1, animals2);
     }
 
     @Test
-    public void testEqualsAnimalsValue() {
+    public void equalsAnimalsValueTest() {
         Assert.assertFalse(animals1.getProfile().equals(animals2.getProfile()));
     }
 
     @Test
-    public void testEqualsHummansRef() {
-        Assert.assertTrue(humans1.equals(humans2));
+    public void equalsHummansRefTest() {
+        Assert.assertNotEquals(humans1, humans2);
+
     }
 
     @Test
-    public void testEqualsHummansvalue() {
+    public void equalsHummansvalueTest() {
         Assert.assertFalse(humans1.getProfile().equals(humans2.getProfile()));
     }
 
     @Test
-    public void testEqualsBirdsRef() {
-        Assert.assertTrue(birds1.equals(birds2));
+    public void equalsBirdsRefTest() {
+        Assert.assertNotEquals(birds1, birds2);
+
     }
 
     @Test
-    public void testEqualsBirdsValue() {
+    public void equalsBirdsValueTest() {
         Assert.assertFalse(birds1.getProfile().equals(birds2.getProfile()));
 
-    }
-
-    @Test
-    public void testNotNullEqualsAnimals() {
-        Assert.assertNotNull(animals1);
-    }
-
-    @Test
-    public void testNullEqualsAnimals() {
-        Assert.assertNull(a4);
     }
 
 

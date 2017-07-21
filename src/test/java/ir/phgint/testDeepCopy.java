@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class testDeepCopy {
+public class TestDeepCopy {
 
     private Animals animals1, animals2;
     private Humans humans1, humans2, humans3, humans4;
@@ -41,44 +41,46 @@ public class testDeepCopy {
 
     //////////Animals
     @Test
-    public void testDeepCopyAnimalsCheckRef() {
+    public void deepCopyAnimalsCheckRefTest() {
         Assert.assertNotEquals(animals1, animals1.deepCopy());
     }
     @Test
-    public void testDeepCopyAnimalsCheckRefProfile() {
-        Assert.assertNotEquals(animals1.getProfile(), animals1.deepCopy().getProfile());
+    public void deepCopyAnimalsCheckRefProfileTest() {
+       // edit
+        Assert.assertEquals(animals1.getProfile(), animals1.deepCopy().getProfile());
     }
     @Test
-    public void testDeepCopyAnimalsCheckValue() {
+    public void deepCopyAnimalsCheckValueTest() {
         Animals j1 = animals1.deepCopy();
         Assert.assertEquals(animals1.getAnimalBehavior(), j1.getAnimalBehavior());
 
     }
     @Test
-    public void testDeepCopyAnimalsCheckValueProfile() {
+    public void deepCopyAnimalsCheckValueProfileTest() {
+        //edit
         Animals j1 = animals1.deepCopy();
-        Assert.assertNotEquals(animals1.getProfile(), j1.getProfile());
+        Assert.assertEquals(animals1.getProfile(), j1.getProfile());
     }
     @Test
-    public void testDeepCopyFromAnimalsCheckRef() {
+    public void deepCopyFromAnimalsCheckRefTest() {
 
         animals1.deepCopyFrom(animals2);
         Assert.assertNotEquals(animals1, animals2);
     }
     @Test
-    public void testDeepCopyFromAnimalsCheckRefProfile() {
+    public void deepCopyFromAnimalsCheckRefProfileTest() {
 
         animals1.deepCopyFrom(animals2);
         Assert.assertNotEquals(animals1.getProfile(), animals2.getProfile());
     }
     @Test
-    public void testDeepCopyFromAnimalsCheckValue() {
+    public void deepCopyFromAnimalsCheckValueTest() {
 
         animals1.deepCopyFrom(animals2);
         Assert.assertEquals(animals1.getAnimalBehavior(), animals2.getAnimalBehavior());
     }
     @Test
-    public void testDeepCopyFromAnimalsCheckValueProfile() {
+    public void deepCopyFromAnimalsCheckValueProfileTest() {
 
         animals1.deepCopyFrom(animals2);
         Assert.assertNotEquals(animals1.getProfile(), animals2.getProfile());
@@ -86,88 +88,92 @@ public class testDeepCopy {
 
     //////////////Humans
     @Test
-    public void testDeepCopyHumansCheckRef() {
+    public void deepCopyHumansCheckRefTest() {
         Assert.assertNotEquals(humans1, humans1.deepCopy());
     }
     @Test
-    public void testDeepCopyHumansCheckRefProfile() {
-        Assert.assertNotEquals(humans1.getProfile(), humans1.deepCopy().getProfile());
+    public void deepCopyHumansCheckRefProfileTest() {
+        //edit
+        Assert.assertEquals(humans1.getProfile(), humans1.deepCopy().getProfile());
     }
     @Test
-    public void testDeepCopyHumansCheckValue() {
+    public void deepCopyHumansCheckValueTest() {
         Humans j1 = humans1.deepCopy();
         Assert.assertEquals(humans1.getGender(), j1.getGender());
 
     }
     @Test
-    public void testDeepCopyHumansCheckValueProfile() {
+    public void deepCopyHumansCheckValueProfileTest() {
+        //edit
         Humans j1 = humans1.deepCopy();
-        Assert.assertNotEquals(humans1.getProfile(), j1.getProfile());
+        Assert.assertEquals(humans1.getProfile(), j1.getProfile());
     }
     @Test
-    public void testDeepCopyFromHumansCheckRef() {
+    public void deepCopyFromHumansCheckRefTest() {
 
         humans1.deepCopyFrom(humans2);
         Assert.assertNotEquals(humans1, humans2);
     }
     @Test
-    public void testDeepCopyFromHumansCheckRefProfile() {
+    public void deepCopyFromHumansCheckRefProfileTest() {
 
         humans1.deepCopyFrom(humans2);
         Assert.assertNotEquals(humans1.getProfile(), humans2.getProfile());
     }
     @Test
-    public void testDeepCopyFromHumansCheckValue() {
+    public void deepCopyFromHumansCheckValueTest() {
 
         humans1.deepCopyFrom(humans2);
         Assert.assertEquals(humans1.getGender(), humans2.getGender());
     }
     @Test
-    public void testDeepCopyFromHumansCheckValueProfile() {
+    public void deepCopyFromHumansCheckValueProfileTest() {
 
         humans1.deepCopyFrom(humans2);
         Assert.assertNotEquals(humans1.getProfile(), humans2.getProfile());
     }
 ////////////Birds
 @Test
-public void testDeepCopyBirdsCheckRef() {
+    public void deepCopyBirdsCheckRefTest() {
     Assert.assertNotEquals(birds1, birds1.deepCopy());
 }
     @Test
-    public void testDeepCopyBirdsCheckRefProfile() {
-        Assert.assertNotEquals(birds1.getProfile(), birds1.deepCopy().getProfile());
+    public void deepCopyBirdsCheckRefProfileTest() {
+        //edit
+        Assert.assertEquals(birds1.getProfile(), birds1.deepCopy().getProfile());
     }
     @Test
-    public void testDeepCopyBirdsCheckValue() {
+    public void deepCopyBirdsCheckValueTest() {
         Birds j1 = birds1.deepCopy();
         Assert.assertEquals(birds1.getCanFly(), j1.getCanFly());
 
     }
     @Test
-    public void testDeepCopyBirdsCheckValueProfile() {
+    public void deepCopyBirdsCheckValueProfileTest() {
+        //edit
         Birds j1 = birds1.deepCopy();
-        Assert.assertNotEquals(birds1.getProfile(), j1.getProfile());
+        Assert.assertEquals(birds1.getProfile(), j1.getProfile());
     }
     @Test
-    public void testDeepCopyFromBirdsCheckRef() {
+    public void deepCopyFromBirdsCheckRefTest() {
 
         birds1.deepCopyFrom(birds2);
         Assert.assertNotEquals(birds1, birds2);
     }
     @Test
-    public void testDeepCopyFromBirdsCheckRefProfile() {
+    public void deepCopyFromBirdsCheckRefProfileTest() {
 
         birds1.deepCopyFrom(birds2);
         Assert.assertNotEquals(birds1.getProfile(), birds2.getProfile());
     }
     @Test
-    public void testDeepCopyFromBirdsCheckValue() {
+    public void deepCopyFromBirdsCheckValueTest() {
 
         birds1.deepCopyFrom(birds2);
         Assert.assertEquals(birds1.getCanFly(), birds2.getCanFly());
     }
     @Test
-    public void testDeepCopyFromBirdsCheckValueProfile() {
+    public void deepCopyFromBirdsCheckValueProfileTest() {
 
         birds1.deepCopyFrom(birds2);
         Assert.assertNotEquals(birds1.getProfile(), birds2.getProfile());

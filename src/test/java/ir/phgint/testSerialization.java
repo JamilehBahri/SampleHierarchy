@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.PrimitiveIterator;
 
-public class testSerialization {
+public class TestSerialization {
 
     private Animals animalNew;
     private Humans humanNew ;
@@ -21,17 +21,16 @@ public class testSerialization {
 
     @Before
     public void initObjectJanevaran() {
-//        animals =  Animals.getAnimalsInstance("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
-//        humans =  Humans.getHumansInstance("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
-//        birds =  Birds.getBirdsInstance("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
         Profile profileAnimals= Profile.getProfileInstance("Dog", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileHumans= Profile.getProfileInstance("Dog", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileBirds= Profile.getProfileInstance("Dog", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
         animals =  Animals.getAnimalsInstance(profileAnimals);
-        humans = Humans.getHumansInstance(profileAnimals);
-        birds = Birds.getBirdsInstance(profileAnimals);
+        humans = Humans.getHumansInstance(profileHumans);
+        birds = Birds.getBirdsInstance(profileBirds);
     }
 
     @Test
-    public void testSerializeAnimals() {
+    public void serializeAnimalsTest() {
         try {
             Serialization.serialize(animals, "animals.ser");
             animalNew = (Animals) Serialization.deserialize("animals.ser");
@@ -45,7 +44,7 @@ public class testSerialization {
     }
 
     @Test
-    public void testSerializeHumans() {
+    public void serializeHumansTest() {
         try {
             Serialization.serialize(humans, "humans.ser");
             humanNew=(Humans) Serialization.deserialize("humans.ser");
@@ -59,7 +58,7 @@ public class testSerialization {
     }
 
     @Test
-    public void testSerializeBirds() {
+    public void serializeBirdsTest() {
         try {
             Serialization.serialize(birds, "birds.ser");
             birdNew=(Birds)Serialization.deserialize("birds.ser");

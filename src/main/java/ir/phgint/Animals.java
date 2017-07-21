@@ -78,14 +78,14 @@ public class Animals extends Mammals {
         hash = 31 * hash + (this.isQuadruped == true ? 1 : 0);
         return hash;
     }
-//ok
+
     public Animals clone() throws CloneNotSupportedException {
         Animals aa=(Animals) super.clone();
         aa.animalBehavior=animalBehavior;
         aa.isQuadruped=isQuadruped;
         return aa;
     }
-    //// ok
+
     public void deepCopyFrom(Animals animals) {
         super.deepCopyFrom(animals);
         this.animalBehavior = animals.animalBehavior;
@@ -95,14 +95,13 @@ public class Animals extends Mammals {
     }
 
     public Animals deepCopy() {
-
-        super.deepCopy();
-        return new Animals(this);
+       Animals animals = (Animals) super.deepCopy();
+        animals.animalBehavior = this.animalBehavior;
+        animals.isQuadruped = this.isQuadruped;
+        return animals;
     }
-    //ok
-    public void shallowCopyFrom(Animals animals) {
 
-//        Animals a = deepCopy();
+    public void shallowCopyFrom(Animals animals) {
         super.shallowCopyFrom(animals);
         this.animalBehavior = animals.animalBehavior;
         this.isQuadruped = animals.isQuadruped;
@@ -116,7 +115,7 @@ public class Animals extends Mammals {
         return a;
     }
 
-//ok
+
     public int compareTo(Animals o) {
 
         int res = super.compareTo(o);

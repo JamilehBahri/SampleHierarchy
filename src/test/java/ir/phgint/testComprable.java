@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class testComprable {
+public class TestComprable {
 
     private Animals animals1, animals2, animals3, animals4;
     private Humans humans1, humans2, humans3, humans4;
@@ -37,7 +37,9 @@ public class testComprable {
         animals4 = Animals.getAnimalsInstance(profileAnimals4);
 
         humans1 = Humans.getHumansInstance(profileHumans1);
+        humans1.setGender(Gender.Female);
         humans2 = Humans.getHumansInstance(profileHumans2);
+        humans2.setGender(Gender.Female);
         humans3 = Humans.getHumansInstance(profileHumans3);
         humans4 = Humans.getHumansInstance(profileHumans4);
 
@@ -48,54 +50,54 @@ public class testComprable {
     }
 
     @Test
-    public void compareEqualsAnimals() {
+    public void compareEqualsAnimalsTest() {
 
         Assert.assertEquals(animals1.compareTo(animals2), 0);
     }
 
     @Test
-    public void compareGreaterAnimals() {
+    public void compareGreaterAnimalsTest() {
 
         Assert.assertEquals(animals1.compareTo(animals3), 1);
     }
 
     @Test
-    public void compareSmallerAnimals() {
+    public void compareSmallerAnimalsTest() {
 
         Assert.assertEquals(animals1.compareTo(animals4), -1);
     }
 
     @Test
-    public void compareEqualsHumans() {
+    public void compareEqualsHumansTest() {
 
         Assert.assertEquals(humans1.compareTo(humans2), 0);
     }
 
     @Test
-    public void compareGreaterHumans() {
+    public void compareGreaterHumansTest() {
 
         Assert.assertEquals(humans1.compareTo(humans3), 1);
     }
 
     @Test
-    public void compareSmallerHumans() {
+    public void compareSmallerHumansTest() {
         Assert.assertEquals(humans1.compareTo(humans4), -1);
     }
 
     @Test
-    public void compareEqualsBirds() {
+    public void compareEqualsBirdsTest() {
 
         Assert.assertEquals(birds1.compareTo(birds2), 0);
     }
 
     @Test
-    public void compareGreaterBirds() {
+    public void compareGreaterBirdsTest() {
 
         Assert.assertEquals(birds1.compareTo(birds3), 1);
     }
 
     @Test
-    public void compareSmallerBirds() {
+    public void compareSmallerBirdsTest() {
 
         Assert.assertEquals(birds1.compareTo(birds4), -1);
     }

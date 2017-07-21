@@ -51,10 +51,8 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
 
     public Janevaran clone() throws CloneNotSupportedException {
 
-           profile.clone();
-           return (Janevaran) super.clone();
-//        Profile jj =  profile.clone();
-//        this.profile = profile.clone();
+        profile.clone();
+        return (Janevaran) super.clone();
     }
 
     @Override
@@ -71,7 +69,7 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
                 '}';
     }
 
-    //// ok
+
     public void deepCopyFrom(Janevaran janevaran) {
 
         try {
@@ -80,17 +78,17 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
             e.printStackTrace();
         }
     }
-//ok
+
     public Janevaran deepCopy() {
 
         try {
             return this.clone();
-        } catch (CloneNotSupportedException e) {
+            } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
         return null;
     }
-//ok
+
     public void shallowCopyFrom(Janevaran janevaran) {
 
         this.profile = janevaran.profile;
@@ -108,7 +106,6 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
         return j;
     }
 
-    //ok
     public int compareTo(Janevaran o) {
         return profile.compareTo(o.profile);
 

@@ -79,13 +79,6 @@ public class Humans extends Mammals {
         hash = 31 * hash + (this.gender != null ? this.gender.hashCode() : 0);
         return hash;
     }
-//ok
-    public Humans clone() throws CloneNotSupportedException {
-        Humans hh = (Humans) super.clone();
-        hh.gender = gender;
-        hh.age = age;
-        return hh;
-    }
 
     public void deepCopyFrom(Humans humans) {
 
@@ -95,12 +88,22 @@ public class Humans extends Mammals {
 
     }
 
+    public Humans clone() throws CloneNotSupportedException {
+        Humans hh = (Humans) super.clone();
+        hh.gender = gender;
+        hh.age = age;
+        return hh;
+    }
+
     public Humans deepCopy() {
 
-        super.deepCopy();
-        return new Humans(this);
+        Humans humans = (Humans) super.deepCopy();
+        humans.gender = this.gender;
+        humans.age = this.age;
+        return humans;
+//        return new Humans(this);
     }
-    //ok
+
     public void shallowCopyFrom(Humans humans) {
 
         super.shallowCopyFrom(humans);
@@ -110,28 +113,27 @@ public class Humans extends Mammals {
 
     public Humans shallowCopy() {
 
-//        Humans j = new Humans(this);
-        Humans h= (Humans) super.shallowCopy();
+        Humans h = (Humans) super.shallowCopy();
         h.gender = this.gender;
         h.age = this.age;
         return h;
     }
 
-//ok
     public int compareTo(Humans o) {
         int res = super.compareTo(o);
         if (res == 0) {
-            if (gender != null && age != null) {
+            if (gender != null) {
                 if (gender.compareTo(o.gender) > 0)
                     return 1;
                 else if (gender.compareTo(o.gender) < 0)
                     return -1;
                 else {
-                    if (age.compareTo(o.age) > 0)
-                        return 1;
-                    else if (age.compareTo(o.age) < 0)
-                        return -1;
-                    else return 0;
+                    if (age != null)
+                        if (age.compareTo(o.age) > 0)
+                            return 1;
+                        else if (age.compareTo(o.age) < 0)
+                            return -1;
+                        else return 0;
                 }
             }
         }
