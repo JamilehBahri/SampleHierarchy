@@ -58,10 +58,18 @@ public class Animals extends Mammals {
 
     @Override
     public String toString() {
-        return "Animals{" +
-                "animalBehavior=" + animalBehavior +
-                ", isQuadruped=" + isQuadruped +
-                '}';
+        stringBuilder.append(super.toString());
+        stringBuilder.append("Animals{");
+        stringBuilder.append("animalBehavior=");
+        stringBuilder.append(animalBehavior);
+        stringBuilder.append("isQuadruped=");
+        stringBuilder.append(isQuadruped);
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+//        return "Animals{" +
+//                "animalBehavior=" + animalBehavior +
+//                ", isQuadruped=" + isQuadruped +
+//                '}';
     }
 
     public boolean equals(Animals animals) {

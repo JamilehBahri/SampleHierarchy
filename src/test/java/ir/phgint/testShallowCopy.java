@@ -48,6 +48,7 @@ public class TestShallowCopy {
 
         Assert.assertEquals(animals1.getProfile(), animals1.shallowCopy().getProfile());
     }
+
     @Test
     public void shallowCopyAnimalsCheckValueTest(){
         Animals j1=animals1.shallowCopy();

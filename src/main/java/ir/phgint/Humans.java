@@ -59,10 +59,19 @@ public class Humans extends Mammals {
 
     @Override
     public String toString() {
-        return "Humans{" +
-                "age=" + age +
-                ", gender=" + gender +
-                '}';
+
+        stringBuilder.append(super.toString());
+        stringBuilder.append("Humans{");
+        stringBuilder.append("age=");
+        stringBuilder.append(age);
+        stringBuilder.append("gender=");
+        stringBuilder.append(gender);
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+//        return "Humans{" +
+//                "age=" + age +
+//                ", gender=" + gender +
+//                '}';
     }
 
     public boolean equals(Humans humans) {

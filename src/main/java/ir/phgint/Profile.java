@@ -17,6 +17,8 @@ public class Profile implements Cloneable, Serializable {
     private Habitats habitats;
     private Pregnant birthType;
 
+    public StringBuilder stringBuilderProfile = new StringBuilder(200);
+
     private Profile(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
         this.name = name;
         this.foodType = foods;
@@ -111,13 +113,21 @@ public class Profile implements Cloneable, Serializable {
 
     @Override
     public String toString() {
-        return "Profile{" +
-                "name='" + name + '\'' +
-                ", foodType=" + foodType +
-                ", talk='" + talk + '\'' +
-                ", habitats=" + habitats +
-                ", birthType=" + birthType +
-                '}';
+
+        stringBuilderProfile.append("name=");
+        stringBuilderProfile.append(name);
+        stringBuilderProfile.append("foodType=");
+        stringBuilderProfile.append(foodType);
+        stringBuilderProfile.append("talk=");
+        stringBuilderProfile.append(talk);
+        stringBuilderProfile.append("habitats=");
+        stringBuilderProfile.append(habitats);
+        stringBuilderProfile.append("birthType=");
+        stringBuilderProfile.append(birthType);
+
+
+        return stringBuilderProfile.toString();
+
     }
 
     @Override

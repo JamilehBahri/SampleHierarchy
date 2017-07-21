@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class TestEquals {
 
-    private Animals animals1, animals2, a4;
+    private Animals animals1, animals2;
     private Humans humans1, humans2;
     private Birds birds1, birds2;
 

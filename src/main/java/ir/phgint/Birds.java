@@ -60,10 +60,18 @@ public class Birds extends Janevaran {
 
     @Override
     public String toString() {
-        return "Birds{" +
-                "canFly=" + canFly +
-                ", hasFeather=" + hasFeather +
-                '}';
+        stringBuilder.append(super.toString());
+        stringBuilder.append("Birds{");
+        stringBuilder.append("canFly=");
+        stringBuilder.append(canFly);
+        stringBuilder.append("hasFeather=");
+        stringBuilder.append(hasFeather);
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+//        return "Birds{" +
+//                "canFly=" + canFly +
+//                ", hasFeather=" + hasFeather +
+//                '}';
     }
 
     public boolean equals(Birds birds) {

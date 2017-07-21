@@ -8,6 +8,8 @@ import java.io.Serializable;
 public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopyable, Serializable, Comparable<Janevaran> {
 
     private Profile profile;
+    public StringBuilder stringBuilder = new StringBuilder(300);
+
 
     protected Janevaran(Profile profiles) {
         profile = Profile.getProfileInstance(profiles);
@@ -64,9 +66,12 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
 
     @Override
     public String toString() {
-        return "Janevaran{" +
-                "profile=" + profile +
-                '}';
+         stringBuilder.append("Janevaran{");
+         stringBuilder.append("profile=");
+         stringBuilder.append(profile.toString());
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+
     }
 
 

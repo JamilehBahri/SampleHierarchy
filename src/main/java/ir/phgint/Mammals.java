@@ -76,10 +76,19 @@ public abstract class Mammals extends Janevaran {
 
     @Override
     public String toString() {
-        return "Mammals{" +
-                "hasHair=" + hasHair +
-                ", hasBackbone=" + hasBackbone +
-                '}';
+        stringBuilder.append(super.toString());
+        stringBuilder.append("Mammals{");
+        stringBuilder.append("hasHair=");
+        stringBuilder.append(hasHair);
+        stringBuilder.append("hasBackbone=");
+        stringBuilder.append(hasBackbone);
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+
+//        return "Mammals{" +
+//                "hasHair=" + hasHair +
+//                ", hasBackbone=" + hasBackbone +
+//                '}';
     }
 
     public void deepCopyFrom(Mammals mammals) {
