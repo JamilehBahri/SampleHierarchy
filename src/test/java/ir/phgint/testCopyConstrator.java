@@ -1,7 +1,8 @@
 package ir.phgint;
 
 import ir.phgint.Enum.*;
-import org.junit.BeforeClass;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -9,36 +10,34 @@ import org.junit.Test;
  */
 public class testCopyConstrator {
 
-    static Animals animals;
-    static Humans humans;
-    static Birds birds;
+    private Animals animals;
+    private Humans humans;
+    private Birds birds;
 
-    @BeforeClass
-    public static void initObjectJanevaran(){
-        animals = new Animals("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
-        humans = new Humans("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
-        birds = new Birds("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
-
-    }
-
-    @Test
-    public void testAnimalsCopyCons(){
-
-        Animals animals1=new Animals(animals);
-        System.out.println("CopyCons Animals.........." + animals1.getProfile().getName());
-    }
-
-    @Test
-    public void testHumansCopyCons(){
-        Humans humans1=new Humans(humans);
-        System.out.println("CopyCons Humans.........." + humans1.getProfile().getName());
+    @Before
+    public void initObjectJanevaran() {
+        animals = Animals.getAnimalsInstance("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
+        humans = Humans.getHumansInstance("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
+        birds = Birds.getBirdsInstance("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
 
     }
 
     @Test
-    public void testBirdsCopyCons(){
-        Birds birds1=new Birds(birds);
-        System.out.println("CopyCons Birds.........." + birds1.getProfile().getName());
+    public void testAnimalsCopyCons() {
+        Animals animals1 =  Animals.getAnimalsInstance(animals);
+        Assert.assertEquals("CopyCons Animals..........", "Dog", animals1.getProfile().getName());
+    }
+
+    @Test
+    public void testHumansCopyCons() {
+        Humans humans1 =  Humans.getHumansInstance(humans);
+        Assert.assertEquals("CopyCons Humans..........", "Mina", humans1.getProfile().getName());
+    }
+
+    @Test
+    public void testBirdsCopyCons() {
+        Birds birds1 =  Birds.getBirdsInstance(birds);
+        Assert.assertEquals("CopyCons Birds..........", "Eagle", birds1.getProfile().getName());
 
     }
 }

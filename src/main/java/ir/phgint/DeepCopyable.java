@@ -5,5 +5,5 @@ package ir.phgint;
  */
 public interface DeepCopyable {
     void deepCopyFrom(Janevaran janevaran);
-    Janevaran deepCopy();
+    Janevaran deepCopy() throws IllegalAccessException, InstantiationException;
 }

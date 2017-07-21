@@ -4,15 +4,11 @@ import ir.phgint.Enum.*;
 
 import java.io.Serializable;
 
-/**
- * Created by Jamile on 09/06/2017.
- */
 public class Animals extends Mammals  implements Cloneable,Serializable, Comparable<Janevaran>{
     private AnimalBehavior animalBehavior;
     private boolean isQuadruped;
 
-
-    public Animals(String name, AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
+    private Animals(String name, AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
                    Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.animalBehavior = animalBehavior;
@@ -20,17 +16,19 @@ public class Animals extends Mammals  implements Cloneable,Serializable, Compara
 
     }
 
-    //Copy Constractor
-    public Animals(Animals animals) {
-        super(animals.getProfile().getName(), animals.getProfile().getFoodType(), animals.getProfile().getTalk(), animals.getProfile().getHabitats(),
-                animals.getProfile().getPregnant(), animals.getHasHair(), animals.getHasBackbone());
+     private Animals(Animals animals) {
+        super(animals);
         animalBehavior = animals.animalBehavior;
         isQuadruped = animals.isQuadruped;
-
     }
 
-
-
+    public static Animals getAnimalsInstance(String name , AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
+                                             Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone){
+        return new Animals(name,animalBehavior,isQuadruped,foods,t,habitats,pregnant,hasHair,hasBackbone);
+    }
+    public static Animals getAnimalsInstance(Animals animals){
+        return new Animals(animals);
+    }
 
     public void setIsQuadruped(boolean value) {
         this.isQuadruped = value;
@@ -75,11 +73,9 @@ public class Animals extends Mammals  implements Cloneable,Serializable, Compara
     public boolean equals(Animals animals) {
         if ( animals== this)
             return true;
-        if(  (animals==null)||
-                !( animals instanceof Animals ) )
+        if (animals==null)
             return false;
-
-        return super.equals(animals) && (this.animalBehavior != animals.animalBehavior) && (this.isQuadruped != animals.isQuadruped) ;
+        return super.equals(animals) && (this.animalBehavior == animals.animalBehavior) && (this.isQuadruped == animals.isQuadruped) ;
     }
 
     public int hashCode() {

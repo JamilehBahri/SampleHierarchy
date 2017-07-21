@@ -1,41 +1,46 @@
 package ir.phgint;
 
 import ir.phgint.Enum.*;
-import org.junit.BeforeClass;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Created by Jamile on 11/06/2017.
  */
 public class testHash {
-    static Animals animals;
-    static Humans humans;
-    static Birds birds;
+    Animals animals;
+    Humans humans;
+    Birds birds;
 
-    @BeforeClass
-    public static void initObjectJanevaran(){
-        animals = new Animals("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
-        humans = new Humans("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
-        birds = new Birds("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
+    @Before
+    public void initObjectJanevaran() {
 
+        animals =  Animals.getAnimalsInstance("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
+        humans =  Humans.getHumansInstance("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
+        birds =  Birds.getBirdsInstance("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
     }
 
     @Test
-    public void getHashAnimals (){
+    public void getHashAnimals() {
 
-         System.out.println(animals.hashCode());
+        int hash = animals.hashCode();
+        Assert.assertEquals(hash,animals.hashCode());
     }
+
     @Test
-    public void getHashHumans (){
-
-        System.out.println(humans.hashCode());
+    public void getHashHumans() {
+        int hash = humans.hashCode();
+        Assert.assertEquals(hash, humans.hashCode());
     }
+
     @Test
-    public void getHashBirds (){
+    public void getHashBirds() {
 
-        System.out.println(birds.hashCode());
+        int hash = birds.hashCode();
+        Assert.assertEquals(hash, birds.hashCode());
+
     }
-
 
 
 }

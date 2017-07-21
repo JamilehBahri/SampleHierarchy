@@ -10,21 +10,20 @@ public class Mammals extends Janevaran implements Cloneable, Serializable, Compa
     private boolean hasBackbone;
 
 
-    public Mammals(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+    protected Mammals(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant);
         this.hasHair = hasHair;
         this.hasBackbone = hasBackbone;
-
     }
 
-    //Copy Constractor
-    public Mammals(Mammals mammals) {
-
-        super(mammals.getProfile().getName(), mammals.getProfile().getFoodType(), mammals.getProfile().getTalk(),
-                mammals.getProfile().getHabitats(), mammals.getProfile().getPregnant());
-
+    protected Mammals(Mammals mammals) {
+        super(mammals);
         hasHair = mammals.hasHair;
         hasBackbone = mammals.hasBackbone;
+    }
+
+    public static Mammals getMammalsInstance(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+        return new Mammals(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
     }
 
 
@@ -44,16 +43,12 @@ public class Mammals extends Janevaran implements Cloneable, Serializable, Compa
         return hasBackbone;
     }
 
-
     public boolean equals(Mammals mammals) {
 
-        if (mammals == this) return true;
-
-        if ((mammals == null) ||
-                // (mammals.getClass()!=getClass())||
-                !(mammals instanceof Mammals))
+        if (mammals == this)
+            return true;
+        if (mammals == null)
             return false;
-
         return super.equals(mammals) && (this.hasHair == mammals.hasHair) && (this.hasBackbone == mammals.hasBackbone);
     }
 

@@ -4,11 +4,7 @@ import ir.phgint.Enum.*;
 
 import java.io.Serializable;
 
-/**
- * Created by Jamile on 09/06/2017.
- */
-public class Janevaran implements Cloneable, DeepCopyable, ShallowCopyable, Serializable, Comparable<Janevaran>  {
-
+public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopyable, Serializable, Comparable<Janevaran> {
 
     private Profile profile;
 
@@ -20,27 +16,32 @@ public class Janevaran implements Cloneable, DeepCopyable, ShallowCopyable, Seri
         return profile;
     }
 
+    protected Janevaran(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
+        profile = Profile.getProfileInstance(name, foods, t, habitats, pregnant);
+    }
 
-    public Janevaran(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
-        profile = new Profile(name, foods, t, habitats, pregnant);
+    protected Janevaran(Janevaran janevaran) {
+
+        profile = Profile.getProfileInstance(janevaran.profile);
+    }
+
+    public static Profile getJanevaranInstance(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
+
+        return Profile.getProfileInstance(name, foods, t, habitats, pregnant);
 
     }
 
+    public static Profile getJanevaranInstance(Profile janevaran) {
 
-    //Copy Constractor
-    public Janevaran(Janevaran janevaran) {
-
-        profile = new Profile(janevaran.profile);
+        return Profile.getProfileInstance(janevaran);
     }
-
 
     public boolean equals(Janevaran janevaran) {
         if (janevaran == this)
             return true;
-        if((janevaran==null)||
-                !(janevaran instanceof Janevaran) )
+        if (janevaran == null)
             return false;
-        return profile.equals(janevaran.profile);
+        return profile.equals(profile);
     }
 
     public Janevaran clone() throws CloneNotSupportedException {
@@ -49,40 +50,39 @@ public class Janevaran implements Cloneable, DeepCopyable, ShallowCopyable, Seri
 
     }
 
-    private volatile int hashCode;
     @Override
     public int hashCode() {
-        int hash = hashCode;
-        if (hash == 0) {
-            hash = 17;
-            hash = 31 * hash +(null == profile ? 0 : profile.hashCode()); ;
-            hashCode = hash;
-        }
+        int hash = 17;
+        hash = 31 * hash + (null == profile ? 0 : profile.hashCode());
         return hash;
     }
 
-
-
     public void deepCopyFrom(Janevaran janevaran) {
 
-
+        this.profile = Janevaran.getJanevaranInstance(janevaran.profile);
     }
 
     public Janevaran deepCopy() {
 
-        return null;
+        Janevaran.getJanevaranInstance(this.profile);
+        return this;
     }
 
     public void shallowCopyFrom(Janevaran janevaran) {
+
+        this.profile = janevaran.profile;
 
     }
 
     public Janevaran shallowCopy() {
 
-        return null;
+        Janevaran j = deepCopy();
+        j.profile = this.profile;
+        return j;
+
     }
 
-  //  @Override
+    //  @Override
     public int compareTo(Janevaran o) {
         String currentobj = profile.getName().toUpperCase();
         return currentobj.compareTo(o.getProfile().getName().toUpperCase());

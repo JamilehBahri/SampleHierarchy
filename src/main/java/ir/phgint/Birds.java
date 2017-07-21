@@ -4,30 +4,32 @@ import ir.phgint.Enum.*;
 
 import java.io.Serializable;
 
-/**
- * Created by Jamile on 09/06/2017.
- */
+
 public class Birds extends Janevaran  implements Cloneable,Serializable, Comparable<Janevaran> {
     private boolean canFly;
     private boolean hasFeather;
 
 
-    public Birds(String name, boolean canFly, boolean hasFeather, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
+    private Birds(String name, boolean canFly, boolean hasFeather, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
         super(name, foods, t, habitats, pregnant);
         this.canFly = canFly;
         this.hasFeather = hasFeather;
 
     }
 
-    //Copy Constractor
-    public Birds(Birds birds) {
-        super(birds.getProfile().getName(), birds.getProfile().getFoodType(), birds.getProfile().getTalk(),
-                birds.getProfile().getHabitats(), birds.getProfile().getPregnant());
+    private Birds(Birds birds) {
+        super(birds);
         canFly = birds.canFly;
         hasFeather = birds.hasFeather;
-
     }
 
+    public static Birds getBirdsInstance(String name ,boolean canFly,boolean hasFeather, Foods foods, String t,Habitats habitats, Pregnant pregnant){
+        return new Birds(name,canFly,hasFeather,foods,t,habitats,pregnant);
+    }
+
+    public static Birds getBirdsInstance(Birds birds){
+        return new Birds(birds);
+    }
 
     public void setCanFly(boolean value) {
         this.canFly = value;
@@ -72,11 +74,10 @@ public class Birds extends Janevaran  implements Cloneable,Serializable, Compara
 
         if ( birds== this)
             return true;
-        if(  (birds==null)||
-                !( birds instanceof Birds ) )
+        if(birds==null)
             return false;
 
-        return super.equals(birds)&&  (this.canFly != birds.canFly)&& (this.hasFeather != birds.hasFeather);
+        return super.equals(birds)&&  (this.canFly == birds.canFly)&& (this.hasFeather == birds.hasFeather);
     }
 
     public int hashCode() {

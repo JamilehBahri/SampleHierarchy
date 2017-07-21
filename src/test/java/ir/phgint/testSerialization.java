@@ -1,82 +1,71 @@
 package ir.phgint;
 
 import ir.phgint.Enum.*;
-import org.junit.BeforeClass;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.PrimitiveIterator;
 
 public class testSerialization {
 
-    static Animals animals;
-    static Humans humans;
-    static Birds birds;
+    private Animals animalNew;
+    private Humans humanNew ;
+    private Birds birdNew;
 
-    @BeforeClass
-    public static void initObjectJanevaran(){
-        animals = new Animals("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
-        humans = new Humans("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
-        birds = new Birds("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
+    private Animals animals;
+    private Humans humans;
+    private Birds birds;
+
+    @Before
+    public void initObjectJanevaran() {
+        animals =  Animals.getAnimalsInstance("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
+        humans =  Humans.getHumansInstance("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
+        birds =  Birds.getBirdsInstance("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
     }
 
     @Test
-    public void serializeAnimals (){
+    public void testSerializeAnimals() {
         try {
             Serialization.serialize(animals, "animals.ser");
-            System.out.println(" Animal serialize  Success");
+            animalNew = (Animals) Serialization.deserialize("animals.ser");
+            Assert.assertTrue(animals.equals(animalNew));
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+
     }
+
     @Test
-    public void serializeHumans (){
+    public void testSerializeHumans() {
         try {
             Serialization.serialize(humans, "humans.ser");
-            System.out.println(" humans serialize  Success");
+            humanNew=(Humans) Serialization.deserialize("humans.ser");
+            Assert.assertTrue(humans.equals(humanNew));
+
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+
     @Test
-    public void serializeBirds (){
+    public void testSerializeBirds() {
         try {
             Serialization.serialize(birds, "birds.ser");
-            System.out.println(" birds serialize  Success");
+            birdNew=(Birds)Serialization.deserialize("birds.ser");
+            Assert.assertTrue(birds.equals(birdNew));
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void deserializeAnimals () throws IOException {
-        Animals animalNew = null;
-        try {
-            animalNew = (Animals) Serialization.deserialize("animals.ser");
-            System.out.println(" animals deserialize  Success");
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-    @Test
-    public void deserializeHumans () throws IOException{
-        Humans humanNew = null;
-        try {
-            humanNew = (Humans) Serialization.deserialize("humans.ser");
-            System.out.println(" humans deserialize  Success");
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    @Test
-    public void deserializeBirds ()throws IOException{
-        Birds birdNew = null;
-        try {
-            birdNew = (Birds) Serialization.deserialize("birds.ser");
-            System.out.println(" birds deserialize  Success");
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 }
