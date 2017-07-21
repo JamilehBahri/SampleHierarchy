@@ -30,10 +30,18 @@ public class TestTostring {
     }
 
     @Test
-    public void toStringTest()
+    public void toStringAnimalsTest()
     {
-        Animals animal = (Animals) animals;
-        System.out.println(animal); 
-
+       String string = animals.toString();
+    }
+    @Test
+    public void toStringHumansTest()
+    {
+        String string = humans.toString();
+    }
+    @Test
+    public void toStringBirdsTest()
+    {
+        String string = birds.toString();
     }
 }

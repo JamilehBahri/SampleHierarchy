@@ -9,6 +9,7 @@ public class Humans extends Mammals {
     private Ages age;
     private Gender gender;
 
+
     private Humans(Profile profile) {
         super(profile);
     }
@@ -59,19 +60,13 @@ public class Humans extends Mammals {
 
     @Override
     public String toString() {
-
-        stringBuilder.append(super.toString());
-        stringBuilder.append("Humans{");
-        stringBuilder.append("age=");
-        stringBuilder.append(age);
-        stringBuilder.append("gender=");
-        stringBuilder.append(gender);
-        stringBuilder.append("}");
-        return stringBuilder.toString();
-//        return "Humans{" +
-//                "age=" + age +
-//                ", gender=" + gender +
-//                '}';
+        final StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("Humans{");
+        sb.append("age=").append(age);
+        sb.append(", gender=").append(gender);
+        sb.append('}');
+        return sb.toString();
     }
 
     public boolean equals(Humans humans) {

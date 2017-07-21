@@ -17,7 +17,7 @@ public class Profile implements Cloneable, Serializable {
     private Habitats habitats;
     private Pregnant birthType;
 
-    public StringBuilder stringBuilderProfile = new StringBuilder(200);
+
 
     private Profile(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
         this.name = name;
@@ -90,7 +90,7 @@ public class Profile implements Cloneable, Serializable {
         if (profile == null)
             return false;
 
-        return(this.name == profile.name) &&
+        return (this.name == profile.name) &&
                 (this.foodType == profile.foodType) &&
                 (this.talk == profile.talk) &&
                 (this.habitats == profile.habitats) &&
@@ -113,21 +113,14 @@ public class Profile implements Cloneable, Serializable {
 
     @Override
     public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("name='").append(name).append('\'');
+        sb.append(", foodType=").append(foodType);
+        sb.append(", talk='").append(talk).append('\'');
+        sb.append(", habitats=").append(habitats);
+        sb.append(", birthType=").append(birthType);
 
-        stringBuilderProfile.append("name=");
-        stringBuilderProfile.append(name);
-        stringBuilderProfile.append("foodType=");
-        stringBuilderProfile.append(foodType);
-        stringBuilderProfile.append("talk=");
-        stringBuilderProfile.append(talk);
-        stringBuilderProfile.append("habitats=");
-        stringBuilderProfile.append(habitats);
-        stringBuilderProfile.append("birthType=");
-        stringBuilderProfile.append(birthType);
-
-
-        return stringBuilderProfile.toString();
-
+        return sb.toString();
     }
 
     @Override
@@ -140,7 +133,7 @@ public class Profile implements Cloneable, Serializable {
         return result;
     }
 
-//ok
+    //ok
     public int compareTo(Profile o) {
         if (name.compareTo(o.name) > 0)
             return 1;
@@ -164,7 +157,7 @@ public class Profile implements Cloneable, Serializable {
                     return 1;
                 if (habitats.compareTo(o.habitats) < 0)
                     return -1;
-            } else  {
+            } else {
                 if (foodType.compareTo(o.foodType) > 0)
                     return 1;
                 if (foodType.compareTo(o.foodType) < 0)

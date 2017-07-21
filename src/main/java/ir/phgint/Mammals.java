@@ -9,6 +9,7 @@ public abstract class Mammals extends Janevaran {
     private boolean hasHair;
     private boolean hasBackbone;
 
+
     protected Mammals(Profile profile) {
         super(profile);
     }
@@ -76,20 +77,15 @@ public abstract class Mammals extends Janevaran {
 
     @Override
     public String toString() {
-        stringBuilder.append(super.toString());
-        stringBuilder.append("Mammals{");
-        stringBuilder.append("hasHair=");
-        stringBuilder.append(hasHair);
-        stringBuilder.append("hasBackbone=");
-        stringBuilder.append(hasBackbone);
-        stringBuilder.append("}");
-        return stringBuilder.toString();
-
-//        return "Mammals{" +
-//                "hasHair=" + hasHair +
-//                ", hasBackbone=" + hasBackbone +
-//                '}';
+        final StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("Mammals{");
+        sb.append("hasHair=").append(hasHair);
+        sb.append(", hasBackbone=").append(hasBackbone);
+        sb.append('}');
+        return sb.toString();
     }
+
 
     public void deepCopyFrom(Mammals mammals) {
 
