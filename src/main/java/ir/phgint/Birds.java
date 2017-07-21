@@ -26,7 +26,7 @@ public class Birds extends Janevaran{
     }
 
 
-    protected static Birds getBirdsInstance(Profile profile){
+    public static Birds getBirdsInstance(Profile profile){
         return new Birds(profile);
     }
 
@@ -81,46 +81,61 @@ public class Birds extends Janevaran{
         hash = 31 * hash + (this.hasFeather == true ? 1 : 0);
         return hash;
     }
-
+//ok
     public Birds clone() throws CloneNotSupportedException {
-        return (Birds) super.clone();
+        Birds bb = (Birds) super.clone();
+        bb.canFly = canFly;
+        bb.hasFeather = hasFeather;
+        return bb;
     }
 
+    //ok
     public void deepCopyFrom(Birds birds)  {
 
-        Birds bird=new Birds(birds);
+        super.deepCopyFrom(birds);
+        this.canFly =birds.canFly;
+        this.hasFeather=birds.hasFeather;
 
     }
 
     public Birds deepCopy()  {
 
+        super.deepCopy();
         return new Birds(this);
     }
-
+    //ok
     public void shallowCopyFrom(Birds birds) {
 
-        this.canFly =birds.canFly;
-        this.hasFeather=birds.hasFeather;
+        super.shallowCopyFrom(birds);
+        this.canFly = birds.canFly;
+        this.hasFeather = birds.hasFeather;
     }
 
     public Birds shallowCopy() {
 
-        Birds j = new Birds(this);
-        j.canFly = this.canFly;
-        j.hasFeather=this.hasFeather;
-        return j;
+        Birds b = (Birds) super.shallowCopy();
+        b.canFly = this.canFly;
+        b.hasFeather=this.hasFeather;
+        return b;
     }
-
+//ok
     public int compareTo(Birds o) {
 
         int res= super.compareTo(o) ;
         if(res==0)
         {
-            if(canFly==o.canFly && hasFeather==o.hasFeather)
-              return 0;
+            if (Boolean.valueOf(canFly).compareTo(Boolean.valueOf(o.canFly)) > 0)
+                return 1;
+            else if (Boolean.valueOf(canFly).compareTo(Boolean.valueOf(o.canFly)) < 0)
+                return -1;
+            else {
+                if (Boolean.valueOf(hasFeather).compareTo(Boolean.valueOf(o.hasFeather)) > 0)
+                    return 1;
+                else if (Boolean.valueOf(hasFeather).compareTo(Boolean.valueOf(o.hasFeather)) < 0)
+                    return -1;
+                else return 0;
+            }
         }
         return res;
-
-
     }
 }

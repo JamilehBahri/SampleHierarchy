@@ -4,9 +4,6 @@ import ir.phgint.Enum.*;
 
 import java.io.Serializable;
 
-/**
- * Created by Jamile on 09/06/2017.
- */
 public class Humans extends Mammals {
 
     private Ages age;
@@ -29,7 +26,7 @@ public class Humans extends Mammals {
         gender = humans.gender;
     }
 
-    protected static Humans getHumansInstance(Profile profile) {
+    public static Humans getHumansInstance(Profile profile) {
         return new Humans(profile);
     }
 
@@ -82,53 +79,63 @@ public class Humans extends Mammals {
         hash = 31 * hash + (this.gender != null ? this.gender.hashCode() : 0);
         return hash;
     }
-
+//ok
     public Humans clone() throws CloneNotSupportedException {
-        return (Humans) super.clone();
+        Humans hh = (Humans) super.clone();
+        hh.gender = gender;
+        hh.age = age;
+        return hh;
     }
 
     public void deepCopyFrom(Humans humans) {
 
-        Humans human = new Humans(humans);
+        super.deepCopyFrom(humans);
+        this.gender = humans.gender;
+        this.age = humans.age;
 
     }
 
     public Humans deepCopy() {
 
+        super.deepCopy();
         return new Humans(this);
     }
-
+    //ok
     public void shallowCopyFrom(Humans humans) {
 
+        super.shallowCopyFrom(humans);
         this.gender = humans.gender;
         this.age = humans.age;
     }
 
     public Humans shallowCopy() {
 
-        Humans j = new Humans(this);
-        j.gender = this.gender;
-        j.age = this.age;
-        return j;
+//        Humans j = new Humans(this);
+        Humans h= (Humans) super.shallowCopy();
+        h.gender = this.gender;
+        h.age = this.age;
+        return h;
     }
 
-
+//ok
     public int compareTo(Humans o) {
         int res = super.compareTo(o);
-        int res1=0;
         if (res == 0) {
             if (gender != null && age != null) {
-                res = gender.compareTo(o.gender);
-                res1 = age.compareTo(o.age);
-                if (res == 0 && res1 == 0)
-                    return 0;
-                else if (res > 0)
+                if (gender.compareTo(o.gender) > 0)
                     return 1;
-                else if (res < 0)
+                else if (gender.compareTo(o.gender) < 0)
                     return -1;
+                else {
+                    if (age.compareTo(o.age) > 0)
+                        return 1;
+                    else if (age.compareTo(o.age) < 0)
+                        return -1;
+                    else return 0;
+                }
             }
         }
         return res;
-
     }
 }
+

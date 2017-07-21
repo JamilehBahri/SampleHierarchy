@@ -13,12 +13,13 @@ public class testClone {
 
     @Before
     public void initObjectJanevaran(){
-//        animals = Animals.getAnimalsInstance("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
         Profile profileAnimals= Profile.getProfileInstance("Dog", Foods.Vegetarian, "Hop Hop", Habitats.Dry, Pregnant.Viviparous);
         Profile profileHumans= Profile.getProfileInstance("Dog", Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous);
         Profile profileBirds= Profile.getProfileInstance("Eugle", Foods.Vegetarian, "ji ji", Habitats.Dry, Pregnant.Viviparous);
 
         animals =  Animals.getAnimalsInstance(profileAnimals);
+        animals.setAnimalBehavior(AnimalBehavior.Domestic);
+        animals.setHasHair(true);
         humans = Humans.getHumansInstance(profileHumans);
         birds = Birds.getBirdsInstance(profileBirds);
     }

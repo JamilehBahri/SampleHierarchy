@@ -21,12 +21,12 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
         profile = Profile.getProfileInstance(janevaran.profile);
     }
 
-    protected static Janevaran getJanevaranInstance(ObjectType objectType, Profile profile) {
+    public static Janevaran getJanevaranInstance(ObjectType objectType, Profile profile) {
         if (objectType == ObjectType.ANIMALS)
             return Animals.getAnimalsInstance(profile);
-        if (objectType == ObjectType.HUMANS)
+        else if (objectType == ObjectType.HUMANS)
             return Humans.getHumansInstance(profile);
-        if (objectType == ObjectType.BIRDS)
+        else if (objectType == ObjectType.BIRDS)
             return Birds.getBirdsInstance(profile);
 
         return null;
@@ -50,8 +50,11 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
     }
 
     public Janevaran clone() throws CloneNotSupportedException {
-        profile.clone();
-        return (Janevaran) super.clone();
+
+           profile.clone();
+           return (Janevaran) super.clone();
+//        Profile jj =  profile.clone();
+//        this.profile = profile.clone();
     }
 
     @Override
@@ -68,39 +71,46 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
                 '}';
     }
 
-    public void deepCopyFrom(Janevaran janevaran) throws CloneNotSupportedException {
+    //// ok
+    public void deepCopyFrom(Janevaran janevaran) {
 
-        this.profile = janevaran.clone().profile;
+        try {
+            this.profile = janevaran.profile.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
+//ok
+    public Janevaran deepCopy() {
 
-    public Janevaran deepCopy() throws CloneNotSupportedException {
-
-        return this.clone();
+        try {
+            return this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-
+//ok
     public void shallowCopyFrom(Janevaran janevaran) {
 
         this.profile = janevaran.profile;
     }
 
-    public Janevaran shallowCopy() throws CloneNotSupportedException {
+    public Janevaran shallowCopy() {
 
-        Janevaran j = this.clone();
+        Janevaran j = null;
+        try {
+            j = this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         j.profile = this.profile;
         return j;
     }
 
-
-
+    //ok
     public int compareTo(Janevaran o) {
-      int res= profile.compareTo(o.profile);
-       if(res==0)
-         return 0;
-       else if(res>0)
-          return 1;
-       else if(res<0)
-          return -1;
+        return profile.compareTo(o.profile);
 
-        return 0;
     }
 }

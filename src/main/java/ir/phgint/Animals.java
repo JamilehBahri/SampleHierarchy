@@ -11,20 +11,22 @@ public class Animals extends Mammals {
     private Animals(Profile profile) {
         super(profile);
     }
+
     private Animals(String name, AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
-                   Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+                    Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.animalBehavior = animalBehavior;
         this.isQuadruped = isQuadruped;
     }
-     private Animals(Animals animals) {
+
+    private Animals(Animals animals) {
         super(animals);
         animalBehavior = animals.animalBehavior;
         isQuadruped = animals.isQuadruped;
     }
 
 
-    protected static Animals getAnimalsInstance(Profile profile)  {
+    public static Animals getAnimalsInstance(Profile profile) {
         return new Animals(profile);
     }
 
@@ -62,61 +64,76 @@ public class Animals extends Mammals {
                 '}';
     }
 
-     public boolean equals(Animals animals) {
-        if ( animals== this)
+    public boolean equals(Animals animals) {
+        if (animals == this)
             return true;
-        if (animals==null)
+        if (animals == null)
             return false;
-        return super.equals(animals) && (this.animalBehavior == animals.animalBehavior) && (this.isQuadruped == animals.isQuadruped) ;
+        return super.equals(animals) && (this.animalBehavior == animals.animalBehavior) && (this.isQuadruped == animals.isQuadruped);
     }
 
     public int hashCode() {
         int hash = super.hashCode();
-        hash = 31 * hash + (this.animalBehavior!= null ? this.animalBehavior.hashCode() : 0);
+        hash = 31 * hash + (this.animalBehavior != null ? this.animalBehavior.hashCode() : 0);
         hash = 31 * hash + (this.isQuadruped == true ? 1 : 0);
         return hash;
     }
-
+//ok
     public Animals clone() throws CloneNotSupportedException {
-        return (Animals) super.clone();
+        Animals aa=(Animals) super.clone();
+        aa.animalBehavior=animalBehavior;
+        aa.isQuadruped=isQuadruped;
+        return aa;
+    }
+    //// ok
+    public void deepCopyFrom(Animals animals) {
+        super.deepCopyFrom(animals);
+        this.animalBehavior = animals.animalBehavior;
+        this.isQuadruped = animals.isQuadruped;
+
+
     }
 
-    public void deepCopyFrom(Animals animals)  {
+    public Animals deepCopy() {
 
-       Animals animal=new Animals(animals);
-
-    }
-
-    public Animals deepCopy()  {
-
+        super.deepCopy();
         return new Animals(this);
     }
-
+    //ok
     public void shallowCopyFrom(Animals animals) {
 
-        this.animalBehavior =animals.animalBehavior;
-        this.isQuadruped=animals.isQuadruped;
+//        Animals a = deepCopy();
+        super.shallowCopyFrom(animals);
+        this.animalBehavior = animals.animalBehavior;
+        this.isQuadruped = animals.isQuadruped;
     }
 
     public Animals shallowCopy() {
 
-        Animals j = new Animals(this);
-        j.animalBehavior = this.animalBehavior;
-        j.isQuadruped=this.isQuadruped;
-        return j;
+     Animals a=(Animals) super.shallowCopy();
+        a.animalBehavior = this.animalBehavior;
+        a.isQuadruped = this.isQuadruped;
+        return a;
     }
 
-
+//ok
     public int compareTo(Animals o) {
 
-        int res= super.compareTo(o) ;
-        if(res==0)
-        {
-            if (animalBehavior!=null)
-                res=  animalBehavior.compareTo(o.animalBehavior);
+        int res = super.compareTo(o);
+        if (res == 0) {
+            if (animalBehavior != null)
+                if (animalBehavior.compareTo(o.animalBehavior) > 0)
+                    return 1;
+                else if (animalBehavior.compareTo(o.animalBehavior) < 0)
+                    return -1;
+                else {
+                    if (Boolean.valueOf(isQuadruped).compareTo(Boolean.valueOf(o.isQuadruped)) > 0)
+                        return 1;
+                    else if (Boolean.valueOf(isQuadruped).compareTo(Boolean.valueOf(o.isQuadruped)) < 0)
+                        return -1;
+                    else return 0;
+                }
         }
         return res;
-
-
     }
 }

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Profile implements Cloneable, Serializable{
+public class Profile implements Cloneable, Serializable {
 
     private String name;
     private Foods foodType;
@@ -33,11 +33,11 @@ public class Profile implements Cloneable, Serializable{
         birthType = profile.birthType;
     }
 
-    protected static Profile getProfileInstance(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
+    public static Profile getProfileInstance(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
         return new Profile(name, foods, t, habitats, pregnant);
     }
 
-    protected static Profile getProfileInstance(Profile profile) {
+    public static Profile getProfileInstance(Profile profile) {
         return new Profile(profile);
     }
 
@@ -81,7 +81,6 @@ public class Profile implements Cloneable, Serializable{
         return birthType;
     }
 
-
     public boolean equals(Profile profile) {
 
         if (profile == this)
@@ -89,8 +88,8 @@ public class Profile implements Cloneable, Serializable{
         if (profile == null)
             return false;
 
-        return (this.foodType == profile.foodType) &&
-                (this.name == profile.name) &&
+        return(this.name == profile.name) &&
+                (this.foodType == profile.foodType) &&
                 (this.talk == profile.talk) &&
                 (this.habitats == profile.habitats) &&
                 (this.birthType == profile.birthType);
@@ -98,7 +97,16 @@ public class Profile implements Cloneable, Serializable{
     }
 
     public Profile clone() throws CloneNotSupportedException {
-        return (Profile) super.clone();
+        Profile profile = (Profile) super.clone();
+
+        profile.name = name;
+        profile.foodType = foodType;
+        profile.talk = talk;
+        profile.habitats = habitats;
+        profile.birthType = birthType;
+
+        return profile;
+
     }
 
     @Override
@@ -122,45 +130,39 @@ public class Profile implements Cloneable, Serializable{
         return result;
     }
 
-
+//ok
     public int compareTo(Profile o) {
         if (name.compareTo(o.name) > 0)
             return 1;
         else if (name.compareTo(o.name) < 0)
             return -1;
-        else if (name.compareTo(o.name) == 0 && foodType.compareTo(o.foodType) == 0 &&
-                talk.compareTo(o.talk) == 0 && habitats.compareTo(o.habitats) == 0 && birthType.compareTo(o.birthType) == 0)
+        else {
+            if ((foodType.compareTo(o.foodType) == 0 && talk.compareTo(o.talk) == 0 && habitats.compareTo(o.habitats) == 0 && birthType.compareTo(o.birthType) == 0))
+                return 0;
+            else if (foodType.compareTo(o.foodType) == 0 && habitats.compareTo(o.habitats) == 0 && talk.compareTo(o.talk) == 0) {
+                if (birthType.compareTo(o.birthType) > 0)
+                    return 1;
+                if (birthType.compareTo(o.birthType) < 0)
+                    return -1;
+            } else if (foodType.compareTo(o.foodType) == 0 && habitats.compareTo(o.habitats) == 0) {
+                if (talk.compareTo(o.talk) > 0)
+                    return 1;
+                if (talk.compareTo(o.talk) < 0)
+                    return -1;
+            } else if (foodType.compareTo(o.foodType) == 0) {
+                if (habitats.compareTo(o.habitats) > 0)
+                    return 1;
+                if (habitats.compareTo(o.habitats) < 0)
+                    return -1;
+            } else  {
+                if (foodType.compareTo(o.foodType) > 0)
+                    return 1;
+                if (foodType.compareTo(o.foodType) < 0)
+                    return -1;
+            }
             return 0;
-        else if (name.compareTo(o.name) == 0 && foodType.compareTo(o.foodType) == 0 &&
-                habitats.compareTo(o.habitats) == 0 && talk.compareTo(o.talk) == 0) {
-            if (birthType.compareTo(o.birthType) > 0)
-                return 1;
-            if (birthType.compareTo(o.birthType) < 0)
-                return -1;
-        } else if (name.compareTo(o.name) == 0 && foodType.compareTo(o.foodType) == 0 && habitats.compareTo(o.habitats) == 0) {
-            if (talk.compareTo(o.talk) > 0)
-                return 1;
-            if (talk.compareTo(o.talk) < 0)
-                return -1;
-        } else if (name.compareTo(o.name) == 0 && foodType.compareTo(o.foodType) == 0) {
-            if (habitats.compareTo(o.habitats) > 0)
-                return 1;
-            if (habitats.compareTo(o.habitats) < 0)
-                return -1;
-        } else if (name.compareTo(o.name) == 0) {
-            if (foodType.compareTo(o.foodType) > 0)
-                return 1;
-            if (foodType.compareTo(o.foodType) < 0)
-                return -1;
         }
-        return 0;
+
 
     }
-
-//    public int compareTo(Profile[] o) {
-//
-//      List<Profile> list= Arrays.asList(o);
-//        Collections.sort(list);
-//
-//    }
 }

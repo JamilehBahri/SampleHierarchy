@@ -4,7 +4,7 @@ import ir.phgint.Enum.*;
 
 import java.io.Serializable;
 
-public abstract class Mammals extends Janevaran implements DeepCopyable, ShallowCopyable {
+public abstract class Mammals extends Janevaran {
 
     private boolean hasHair;
     private boolean hasBackbone;
@@ -26,13 +26,11 @@ public abstract class Mammals extends Janevaran implements DeepCopyable, Shallow
     }
 
 
-    protected static Mammals getMammalsInstance(ObjectType objectType, Profile profile)
-    {
+    public static Mammals getMammalsInstance(ObjectType objectType, Profile profile) {
         if (objectType == ObjectType.ANIMALS)
             return Animals.getAnimalsInstance(profile);
-        if (objectType == ObjectType.HUMANS)
+        else if (objectType == ObjectType.HUMANS)
             return Humans.getHumansInstance(profile);
-
         return null;
     }
 
@@ -68,8 +66,12 @@ public abstract class Mammals extends Janevaran implements DeepCopyable, Shallow
         return hash;
     }
 
+    //ok
     public Mammals clone() throws CloneNotSupportedException {
-        return (Mammals) super.clone();
+        Mammals mm = (Mammals) super.clone();
+        mm.hasBackbone = hasBackbone;
+        mm.hasHair = hasHair;
+        return mm;
     }
 
     @Override
@@ -79,45 +81,63 @@ public abstract class Mammals extends Janevaran implements DeepCopyable, Shallow
                 ", hasBackbone=" + hasBackbone +
                 '}';
     }
-    //I know this part is incorrect
-    public void deepCopyFrom(Mammals mammals) throws CloneNotSupportedException {
+
+    ////// ok
+    public void deepCopyFrom(Mammals mammals) {
 
         super.deepCopyFrom(mammals);
+        this.hasHair = mammals.hasHair;
+        this.hasBackbone = mammals.hasBackbone;
     }
-    //I know this part is incorrect
-    public Mammals deepCopy() throws CloneNotSupportedException {
+//ok
+    public Mammals deepCopy() {
+        return (Mammals) super.deepCopy();
+//        try {
+//            this.clone();
+//        } catch (CloneNotSupportedException e) {
+//            e.printStackTrace();
+//        }
 
-       return (Mammals) super.deepCopy();
-       //return this;
     }
-
+    //ok
     public void shallowCopyFrom(Mammals mammals) {
 
+        super.shallowCopyFrom(mammals);
         this.hasHair = mammals.hasHair;
         this.hasBackbone = mammals.hasBackbone;
     }
 
-    public Mammals shallowCopy() throws CloneNotSupportedException {
+    public Mammals shallowCopy() {
 
-        Mammals j = this.clone();
+      Mammals j=(Mammals) super.shallowCopy();
         j.hasHair = this.hasHair;
         j.hasBackbone = this.hasBackbone;
         return j;
+//        Mammals j = null;
+//        try {
+//            j = this.clone();
+//        } catch (CloneNotSupportedException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
-
+//ok
     public int compareTo(Mammals o) {
         int res = super.compareTo(o);
-        if (res==0)
-        {
-            if (hasHair == o.hasHair && hasBackbone == o.hasBackbone)
-                return 0;
-//            if (this.equals(o))
-//                return 0;
-
+        if (res == 0) {
+            if ((Boolean.valueOf(hasHair).compareTo(Boolean.valueOf(o.hasHair))) > 0)
+                return 1;
+            else if ((Boolean.valueOf(hasHair).compareTo(Boolean.valueOf(o.hasHair))) < 0)
+                return -1;
+            else {
+                if (Boolean.valueOf(hasBackbone).compareTo(Boolean.valueOf(o.hasBackbone)) > 0)
+                    return 1;
+                else if (Boolean.valueOf(hasBackbone).compareTo(Boolean.valueOf(o.hasBackbone)) < 0)
+                    return -1;
+                else return 0;
+            }
         }
         return res;
-
     }
-
 }
