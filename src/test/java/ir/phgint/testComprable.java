@@ -1,9 +1,11 @@
 package ir.phgint;
 
-import ir.phgint.Enum.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import ir.phgint.Janevaran.Profile.*;
+import ir.phgint.Janevaran.*;
 
 public class TestComprable {
 
@@ -14,39 +16,52 @@ public class TestComprable {
     @Before
     public void initObjectJanevaran() {
 
-        Profile profileAnimals1 = Profile.getProfileInstance("Dog", Foods.Vegetarian, "HOP HOP", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileAnimals2 = Profile.getProfileInstance("Dog", Foods.Vegetarian, "HOP HOP", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileAnimals3 = Profile.getProfileInstance("Cat", Foods.Vegetarian, "MIO", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileAnimals4 = Profile.getProfileInstance("Lion", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Marsupial);
-
-        Profile profileHumans1 = Profile.getProfileInstance("Mina", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileHumans2 = Profile.getProfileInstance("Mina", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileHumans3 = Profile.getProfileInstance("Ali", Foods.Carnivorous, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileHumans4 = Profile.getProfileInstance("Reza", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-
-
-        Profile profileBirds1 = Profile.getProfileInstance("ordak", Foods.Vegetarian, " JI JI", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileBirds2 = Profile.getProfileInstance("ordak", Foods.Vegetarian, " JI JI", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileBirds3 = Profile.getProfileInstance("Eugle", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileBirds4 = Profile.getProfileInstance("ordak", Foods.Vegetarian, "Voice", Habitats.Lake, Pregnant.Viviparous);
+        ProfileBuilder profileBuilderAnimal1 = new ProfileBuilder().name("Dog").foodType(F.Foods.Carnivorous).talk("Hop Hop")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderAnimal2 = new ProfileBuilder().name("Dog").foodType(F.Foods.Carnivorous).talk("Hop Hop")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderAnimal3 = new ProfileBuilder().name("Cat").foodType(F.Foods.Carnivorous).talk("MIO")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderAnimal4 = new ProfileBuilder().name("Lion").foodType(F.Foods.Carnivorous).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
 
 
-        animals1 = Animals.getAnimalsInstance(profileAnimals1);
-        animals2 = Animals.getAnimalsInstance(profileAnimals2);
-        animals3 = Animals.getAnimalsInstance(profileAnimals3);
-        animals4 = Animals.getAnimalsInstance(profileAnimals4);
+        ProfileBuilder profileBuilderHumans1 = new ProfileBuilder().name("Mina").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderHumans2 = new ProfileBuilder().name("Mina").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderHumans3 = new ProfileBuilder().name("Ali").foodType(F.Foods.Carnivorous).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderHumans4 = new ProfileBuilder().name("Reza").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
 
-        humans1 = Humans.getHumansInstance(profileHumans1);
-        humans1.setGender(Gender.Female);
-        humans2 = Humans.getHumansInstance(profileHumans2);
-        humans2.setGender(Gender.Female);
-        humans3 = Humans.getHumansInstance(profileHumans3);
-        humans4 = Humans.getHumansInstance(profileHumans4);
 
-        birds1 = Birds.getBirdsInstance(profileBirds1);
-        birds2 = Birds.getBirdsInstance(profileBirds2);
-        birds3 = Birds.getBirdsInstance(profileBirds3);
-        birds4 = Birds.getBirdsInstance(profileBirds4);
+        ProfileBuilder profileBuilderBirds1 = new ProfileBuilder().name("ordak").foodType(F.Foods.Vegetarian).talk(" JI JI")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderBirds2 = new ProfileBuilder().name("ordak").foodType(F.Foods.Vegetarian).talk(" JI JI")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderBirds3 = new ProfileBuilder().name("Eugle").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderBirds4 = new ProfileBuilder().name("ordak").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+
+
+        animals1 = Animals.getAnimalsInstance(profileBuilderAnimal1.build());
+        animals2 = Animals.getAnimalsInstance(profileBuilderAnimal2.build());
+        animals3 = Animals.getAnimalsInstance(profileBuilderAnimal3.build());
+        animals4 = Animals.getAnimalsInstance(profileBuilderAnimal4.build());
+
+        humans1 = Humans.getHumansInstance(profileBuilderHumans1.build());
+        humans1.setGender(G.Gender.Female);
+        humans2 = Humans.getHumansInstance(profileBuilderHumans2.build());
+        humans2.setGender(G.Gender.Female);
+        humans3 = Humans.getHumansInstance(profileBuilderHumans3.build());
+        humans4 = Humans.getHumansInstance(profileBuilderHumans4.build());
+
+        birds1 = Birds.getBirdsInstance(profileBuilderBirds1.build());
+        birds2 = Birds.getBirdsInstance(profileBuilderBirds2.build());
+        birds3 = Birds.getBirdsInstance(profileBuilderBirds3.build());
+        birds4 = Birds.getBirdsInstance(profileBuilderBirds4.build());
     }
 
     @Test

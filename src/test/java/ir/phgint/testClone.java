@@ -1,9 +1,12 @@
 package ir.phgint;
 
-import ir.phgint.Enum.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import ir.phgint.Janevaran.Profile.*;
+import ir.phgint.Janevaran.*;
+
 
 public class TestClone {
 
@@ -13,15 +16,21 @@ public class TestClone {
 
     @Before
     public void initObjectJanevaran(){
-        Profile profileAnimals= Profile.getProfileInstance("Dog", Foods.Vegetarian, "Hop Hop", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileHumans= Profile.getProfileInstance("Dog", Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileBirds= Profile.getProfileInstance("Eugle", Foods.Vegetarian, "ji ji", Habitats.Dry, Pregnant.Viviparous);
+        ProfileBuilder profileBuilderAnimal = new ProfileBuilder().name("Dog").foodType(F.Foods.Carnivorous).talk("Hop Hop")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderHumans = new ProfileBuilder().name("Mina").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderBirds = new ProfileBuilder().name("Canary").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
 
-        animals =  Animals.getAnimalsInstance(profileAnimals);
-        animals.setAnimalBehavior(AnimalBehavior.Domestic);
+        animals =  Animals.getAnimalsInstance(profileBuilderAnimal.build());
+        animals.setAnimalBehavior(AB.AnimalBehavior.Domestic);
         animals.setHasHair(true);
-        humans = Humans.getHumansInstance(profileHumans);
-        birds = Birds.getBirdsInstance(profileBirds);
+        humans = Humans.getHumansInstance(profileBuilderHumans.build());
+        birds = Birds.getBirdsInstance(profileBuilderBirds.build());
+
+
+
     }
 
     @Test

@@ -1,21 +1,19 @@
 package ir.phgint;
 
-import ir.phgint.Enum.*;
 
-import java.io.Serializable;
 
 public class Humans extends Mammals {
 
-    private Ages age;
-    private Gender gender;
+    private A.Ages age;
+    private G.Gender gender;
 
 
     private Humans(Profile profile) {
         super(profile);
     }
 
-    private Humans(String name, Gender gender, Ages age, Foods foods, String t, Habitats habitats,
-                   Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+    private Humans(String name, G.Gender gender, A.Ages age, F.Foods foods, String t, H.Habitats habitats,
+                   P.Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.age = age;
         this.gender = gender;
@@ -31,30 +29,30 @@ public class Humans extends Mammals {
         return new Humans(profile);
     }
 
-    public void setAge(Ages age) {
+    public void setAge(A.Ages age) {
         this.age = age;
     }
 
-    public Ages getAge() {
+    public A.Ages getAge() {
         return age;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(G.Gender gender) {
         this.gender = gender;
     }
 
-    public Gender getGender() {
+    public G.Gender getGender() {
         return gender;
     }
 
 
-    public Foods eat(Foods food) {
-        if (food.equals(Foods.Carnivorous))
-            return Foods.Carnivorous;
-        else if (food.equals(Foods.Vegetarian))
-            return Foods.Vegetarian;
+    public F.Foods eat(F.Foods food) {
+        if (food.equals(F.Foods.Carnivorous))
+            return F.Foods.Carnivorous;
+        else if (food.equals(F.Foods.Vegetarian))
+            return F.Foods.Vegetarian;
         else
-            return Foods.Unknown;
+            return F.Foods.Unknown;
 
     }
 
@@ -76,7 +74,7 @@ public class Humans extends Mammals {
             return false;
         return super.equals(humans) && (this.age == humans.age) && (this.gender == humans.gender);
     }
-
+    @Override
     public int hashCode() {
         int hash = super.hashCode();
         hash = 31 * hash + (this.age != null ? this.age.hashCode() : 0);
@@ -105,7 +103,7 @@ public class Humans extends Mammals {
         humans.gender = this.gender;
         humans.age = this.age;
         return humans;
-//        return new Humans(this);
+
     }
 
     public void shallowCopyFrom(Humans humans) {

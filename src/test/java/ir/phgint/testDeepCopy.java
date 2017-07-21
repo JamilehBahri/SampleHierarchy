@@ -1,9 +1,11 @@
 package ir.phgint;
 
-import ir.phgint.Enum.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import ir.phgint.Janevaran.Profile.*;
+import ir.phgint.Janevaran.*;
 
 public class TestDeepCopy {
 
@@ -13,28 +15,37 @@ public class TestDeepCopy {
 
     @Before
     public void initObjectJanevaran() {
-        Profile profileAnimals1 = Profile.getProfileInstance("Dog", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileAnimals2 = Profile.getProfileInstance("Cat", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        animals1 = Animals.getAnimalsInstance(profileAnimals1);
-        animals1.setAnimalBehavior(AnimalBehavior.Domestic);
+
+        ProfileBuilder profileBuilderAnimal1 = new ProfileBuilder().name("Dog").foodType(F.Foods.Carnivorous).talk("Hop Hop")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderAnimal2 = new ProfileBuilder().name("Cat").foodType(F.Foods.Carnivorous).talk("MIO")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+
+        animals1 = Animals.getAnimalsInstance(profileBuilderAnimal1.build());
+        animals1.setAnimalBehavior(AB.AnimalBehavior.Domestic);
         animals1.setHasBackbone(true);
-        animals2 = Animals.getAnimalsInstance(profileAnimals2);
-        animals2.setAnimalBehavior(AnimalBehavior.Domestic);
+        animals2 = Animals.getAnimalsInstance(profileBuilderAnimal2.build());
+        animals2.setAnimalBehavior(AB.AnimalBehavior.Domestic);
         animals2.setHasBackbone(true);
 
 
-        Profile profileHumans1 = Profile.getProfileInstance("Mina", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileHumans2 = Profile.getProfileInstance("Ali", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        humans1 = Humans.getHumansInstance(profileHumans1);
-        humans1.setGender(Gender.Male);
-        humans2 = Humans.getHumansInstance(profileHumans2);
-        humans2.setGender(Gender.Male);
+        ProfileBuilder profileBuilderHumans1 = new ProfileBuilder().name("Mina").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderHumans2 = new ProfileBuilder().name("Ali").foodType(F.Foods.Carnivorous).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        humans1 = Humans.getHumansInstance(profileBuilderHumans1.build());
+        humans1.setGender(G.Gender.Male);
+        humans2 = Humans.getHumansInstance(profileBuilderHumans1.build());
+        humans2.setGender(G.Gender.Male);
 
-        Profile profileBirds1 = Profile.getProfileInstance("Eugle", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileBirds2 = Profile.getProfileInstance("ordak", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        birds1 = Birds.getBirdsInstance(profileBirds1);
+        ProfileBuilder profileBuilderBirds1 = new ProfileBuilder().name("ordak").foodType(F.Foods.Vegetarian).talk(" JI JI")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderBirds2 = new ProfileBuilder().name("Eugle").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+
+        birds1 = Birds.getBirdsInstance(profileBuilderBirds1.build());
         birds1.setCanFly(true);
-        birds2 = Birds.getBirdsInstance(profileBirds2);
+        birds2 = Birds.getBirdsInstance(profileBuilderBirds1.build());
         birds2.setCanFly(true);
 
     }

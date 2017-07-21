@@ -1,8 +1,5 @@
 package ir.phgint;
 
-import ir.phgint.Enum.*;
-
-import java.io.Serializable;
 
 
 public class Birds extends Janevaran {
@@ -13,7 +10,7 @@ public class Birds extends Janevaran {
         super(profile);
     }
 
-    private Birds(String name, boolean canFly, boolean hasFeather, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
+    private Birds(String name, boolean canFly, boolean hasFeather, F.Foods foods, String t, H.Habitats habitats, P.Pregnant pregnant) {
         super(name, foods, t, habitats, pregnant);
         this.canFly = canFly;
         this.hasFeather = hasFeather;
@@ -48,13 +45,13 @@ public class Birds extends Janevaran {
     }
 
 
-    public Foods eat(Foods food) {
-        if (food.equals(Foods.Carnivorous))
-            return Foods.Carnivorous;
-        else if (food.equals(Foods.Vegetarian))
-            return Foods.Vegetarian;
+    public F.Foods eat(F.Foods food) {
+        if (food.equals(F.Foods.Carnivorous))
+            return F.Foods.Carnivorous;
+        else if (food.equals(F.Foods.Vegetarian))
+            return F.Foods.Vegetarian;
         else
-            return Foods.Unknown;
+            return F.Foods.Unknown;
 
     }
 
@@ -69,16 +66,15 @@ public class Birds extends Janevaran {
         return sb.toString();
     }
 
-    public boolean equals(Birds birds) {
 
-        if (birds == this)
-            return true;
-        if (birds == null)
-            return false;
+    public boolean equals(Birds birds) {
+        if (this == birds) return true;
+        if (birds == null) return false;
 
         return super.equals(birds) && (this.canFly == birds.canFly) && (this.hasFeather == birds.hasFeather);
     }
 
+    @Override
     public int hashCode() {
         int hash = super.hashCode();
         hash = 31 * hash + (this.canFly == true ? 1 : 0);
@@ -86,7 +82,7 @@ public class Birds extends Janevaran {
         return hash;
     }
 
-    //ok
+
     public Birds clone() throws CloneNotSupportedException {
         Birds bb = (Birds) super.clone();
         bb.canFly = canFly;

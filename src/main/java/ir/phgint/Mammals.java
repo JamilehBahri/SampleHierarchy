@@ -1,8 +1,8 @@
 package ir.phgint;
 
-import ir.phgint.Enum.*;
 
-import java.io.Serializable;
+
+import ir.phgint.Janevaran.Profile.*;
 
 public abstract class Mammals extends Janevaran {
 
@@ -14,7 +14,7 @@ public abstract class Mammals extends Janevaran {
         super(profile);
     }
 
-    protected Mammals(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+    protected Mammals(String name, F.Foods foods, String t, H.Habitats habitats, P.Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant);
         this.hasHair = hasHair;
         this.hasBackbone = hasBackbone;
@@ -27,10 +27,10 @@ public abstract class Mammals extends Janevaran {
     }
 
 
-    public static Mammals getMammalsInstance(ObjectType objectType, Profile profile) {
-        if (objectType == ObjectType.ANIMALS)
+    public static Mammals getMammalsInstance(ObjectTypes.Type objectType, Profile profile) {
+        if (objectType ==ObjectTypes.Type.ANIMALS)
             return Animals.getAnimalsInstance(profile);
-        else if (objectType == ObjectType.HUMANS)
+        else if (objectType == ObjectTypes.Type.HUMANS)
             return Humans.getHumansInstance(profile);
         return null;
     }
@@ -51,6 +51,7 @@ public abstract class Mammals extends Janevaran {
         return hasBackbone;
     }
 
+
     public boolean equals(Mammals mammals) {
 
         if (mammals == this)
@@ -59,7 +60,7 @@ public abstract class Mammals extends Janevaran {
             return false;
         return super.equals(mammals) && (this.hasHair == mammals.hasHair) && (this.hasBackbone == mammals.hasBackbone);
     }
-
+    @Override
     public int hashCode() {
         int hash = super.hashCode();
         hash = 31 * hash + (this.hasHair == true ? 1 : 0);
@@ -67,7 +68,7 @@ public abstract class Mammals extends Janevaran {
         return hash;
     }
 
-
+    @Override
     public Mammals clone() throws CloneNotSupportedException {
         Mammals mm = (Mammals) super.clone();
         mm.hasBackbone = hasBackbone;

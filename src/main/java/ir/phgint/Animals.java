@@ -1,19 +1,19 @@
 package ir.phgint;
 
-import ir.phgint.Enum.*;
+
 
 import java.io.Serializable;
 
 public class Animals extends Mammals {
-    private AnimalBehavior animalBehavior;
+    private AB.AnimalBehavior animalBehavior;
     private boolean isQuadruped;
 
     private Animals(Profile profile) {
         super(profile);
     }
 
-    private Animals(String name, AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
-                    Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+    private Animals(String name, AB.AnimalBehavior animalBehavior, boolean isQuadruped, F.Foods foods, String t,
+                    H.Habitats habitats, P.Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.animalBehavior = animalBehavior;
         this.isQuadruped = isQuadruped;
@@ -38,22 +38,22 @@ public class Animals extends Mammals {
         return isQuadruped;
     }
 
-    public void setAnimalBehavior(AnimalBehavior value) {
+    public void setAnimalBehavior(AB.AnimalBehavior value) {
         this.animalBehavior = value;
     }
 
-    public AnimalBehavior getAnimalBehavior() {
+    public AB.AnimalBehavior getAnimalBehavior() {
         return animalBehavior;
     }
 
 
-    public Foods eat(Foods food) {
-        if (food.equals(Foods.Carnivorous))
-            return Foods.Carnivorous;
-        else if (food.equals(Foods.Herbivorous))
-            return Foods.Herbivorous;
+    public F.Foods eat(F.Foods food) {
+        if (food.equals(F.Foods.Carnivorous))
+            return F.Foods.Carnivorous;
+        else if (food.equals(F.Foods.Herbivorous))
+            return F.Foods.Herbivorous;
         else
-            return Foods.Unknown;
+            return F.Foods.Unknown;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Animals extends Mammals {
             return false;
         return super.equals(animals) && (this.animalBehavior == animals.animalBehavior) && (this.isQuadruped == animals.isQuadruped);
     }
-
+    @Override
     public int hashCode() {
         int hash = super.hashCode();
         hash = 31 * hash + (this.animalBehavior != null ? this.animalBehavior.hashCode() : 0);

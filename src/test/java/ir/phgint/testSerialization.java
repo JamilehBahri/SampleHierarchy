@@ -1,9 +1,11 @@
 package ir.phgint;
 
-import ir.phgint.Enum.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import ir.phgint.Janevaran.Profile.*;
+import ir.phgint.Janevaran.*;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,12 +23,17 @@ public class TestSerialization {
 
     @Before
     public void initObjectJanevaran() {
-        Profile profileAnimals= Profile.getProfileInstance("Dog", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileHumans= Profile.getProfileInstance("Dog", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        Profile profileBirds= Profile.getProfileInstance("Dog", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
-        animals =  Animals.getAnimalsInstance(profileAnimals);
-        humans = Humans.getHumansInstance(profileHumans);
-        birds = Birds.getBirdsInstance(profileBirds);
+
+        ProfileBuilder profileBuilderAnimal = new ProfileBuilder().name("Dog").foodType(F.Foods.Carnivorous).talk("Hop Hop")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderHumans = new ProfileBuilder().name("Mina").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderBirds = new ProfileBuilder().name("Canary").foodType(F.Foods.Vegetarian).talk("Voice")
+                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+
+        animals =  Animals.getAnimalsInstance(profileBuilderAnimal.build());
+        humans = Humans.getHumansInstance(profileBuilderHumans.build());
+        birds = Birds.getBirdsInstance(profileBuilderBirds.build());
     }
 
     @Test
