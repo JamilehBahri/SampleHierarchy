@@ -4,30 +4,28 @@ import ir.phgint.Enum.*;
 
 import java.io.Serializable;
 
-public class Animals extends Mammals  implements Cloneable,Serializable, Comparable<Janevaran>{
+public class Animals extends Mammals {
     private AnimalBehavior animalBehavior;
     private boolean isQuadruped;
 
+    private Animals(Profile profile) {
+        super(profile);
+    }
     private Animals(String name, AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
                    Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.animalBehavior = animalBehavior;
         this.isQuadruped = isQuadruped;
-
     }
-
      private Animals(Animals animals) {
         super(animals);
         animalBehavior = animals.animalBehavior;
         isQuadruped = animals.isQuadruped;
     }
 
-    public static Animals getAnimalsInstance(String name , AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
-                                             Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone){
-        return new Animals(name,animalBehavior,isQuadruped,foods,t,habitats,pregnant,hasHair,hasBackbone);
-    }
-    public static Animals getAnimalsInstance(Animals animals){
-        return new Animals(animals);
+
+    protected static Animals getAnimalsInstance(Profile profile)  {
+        return new Animals(profile);
     }
 
     public void setIsQuadruped(boolean value) {
@@ -58,19 +56,13 @@ public class Animals extends Mammals  implements Cloneable,Serializable, Compara
 
     @Override
     public String toString() {
-        return "Animal name :" + getProfile().getName() + "\n" +
-                "Animal behavior: " + getAnimalBehavior() + "\n" +
-                "Animal quadruped :" + getIsQuadruped() + "\n" +
-                "Animal eat :" + getProfile().getFoodType() + "\n" +
-                "Animal talk:" + getProfile().getTalk() + "\n" +
-                "Animal Habitats:" + getProfile().getHabitats() + "\n" +
-                "Animal Birth:" + getProfile().getPregnant() + "\n" +
-                "Animal hasHair:" + getHasHair() + "\n" +
-                "Animal hasBackbone :" + getHasBackbone() + "\n";
-
+        return "Animals{" +
+                "animalBehavior=" + animalBehavior +
+                ", isQuadruped=" + isQuadruped +
+                '}';
     }
 
-    public boolean equals(Animals animals) {
+     public boolean equals(Animals animals) {
         if ( animals== this)
             return true;
         if (animals==null)
@@ -89,10 +81,42 @@ public class Animals extends Mammals  implements Cloneable,Serializable, Compara
         return (Animals) super.clone();
     }
 
-    @Override
-    public int compareTo(Janevaran o) {
+    public void deepCopyFrom(Animals animals)  {
 
-        return super.compareTo(o);
+       Animals animal=new Animals(animals);
+
+    }
+
+    public Animals deepCopy()  {
+
+        return new Animals(this);
+    }
+
+    public void shallowCopyFrom(Animals animals) {
+
+        this.animalBehavior =animals.animalBehavior;
+        this.isQuadruped=animals.isQuadruped;
+    }
+
+    public Animals shallowCopy() {
+
+        Animals j = new Animals(this);
+        j.animalBehavior = this.animalBehavior;
+        j.isQuadruped=this.isQuadruped;
+        return j;
+    }
+
+
+    public int compareTo(Animals o) {
+
+        int res= super.compareTo(o) ;
+        if(res==0)
+        {
+            if (animalBehavior!=null)
+                res=  animalBehavior.compareTo(o.animalBehavior);
+        }
+        return res;
+
 
     }
 }

@@ -4,9 +4,33 @@ import ir.phgint.Enum.*;
 
 import java.io.Serializable;
 
+
 public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopyable, Serializable, Comparable<Janevaran> {
 
     private Profile profile;
+
+    protected Janevaran(Profile profiles) {
+        profile = Profile.getProfileInstance(profiles);
+    }
+
+    protected Janevaran(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
+        profile = Profile.getProfileInstance(name, foods, t, habitats, pregnant);
+    }
+
+    protected Janevaran(Janevaran janevaran) {
+        profile = Profile.getProfileInstance(janevaran.profile);
+    }
+
+    protected static Janevaran getJanevaranInstance(ObjectType objectType, Profile profile) {
+        if (objectType == ObjectType.ANIMALS)
+            return Animals.getAnimalsInstance(profile);
+        if (objectType == ObjectType.HUMANS)
+            return Humans.getHumansInstance(profile);
+        if (objectType == ObjectType.BIRDS)
+            return Birds.getBirdsInstance(profile);
+
+        return null;
+    }
 
     public void setProfile(Profile profile) {
         this.profile = profile;
@@ -16,25 +40,6 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
         return profile;
     }
 
-    protected Janevaran(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
-        profile = Profile.getProfileInstance(name, foods, t, habitats, pregnant);
-    }
-
-    protected Janevaran(Janevaran janevaran) {
-
-        profile = Profile.getProfileInstance(janevaran.profile);
-    }
-
-    public static Profile getJanevaranInstance(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
-
-        return Profile.getProfileInstance(name, foods, t, habitats, pregnant);
-
-    }
-
-    public static Profile getJanevaranInstance(Profile janevaran) {
-
-        return Profile.getProfileInstance(janevaran);
-    }
 
     public boolean equals(Janevaran janevaran) {
         if (janevaran == this)
@@ -47,7 +52,6 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
     public Janevaran clone() throws CloneNotSupportedException {
         profile.clone();
         return (Janevaran) super.clone();
-
     }
 
     @Override
@@ -57,34 +61,46 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
         return hash;
     }
 
-    public void deepCopyFrom(Janevaran janevaran) {
-
-        this.profile = Janevaran.getJanevaranInstance(janevaran.profile);
+    @Override
+    public String toString() {
+        return "Janevaran{" +
+                "profile=" + profile +
+                '}';
     }
 
-    public Janevaran deepCopy() {
+    public void deepCopyFrom(Janevaran janevaran) throws CloneNotSupportedException {
 
-        Janevaran.getJanevaranInstance(this.profile);
-        return this;
+        this.profile = janevaran.clone().profile;
+    }
+
+    public Janevaran deepCopy() throws CloneNotSupportedException {
+
+        return this.clone();
     }
 
     public void shallowCopyFrom(Janevaran janevaran) {
 
         this.profile = janevaran.profile;
-
     }
 
-    public Janevaran shallowCopy() {
+    public Janevaran shallowCopy() throws CloneNotSupportedException {
 
-        Janevaran j = deepCopy();
+        Janevaran j = this.clone();
         j.profile = this.profile;
         return j;
-
     }
 
-    //  @Override
+
+
     public int compareTo(Janevaran o) {
-        String currentobj = profile.getName().toUpperCase();
-        return currentobj.compareTo(o.getProfile().getName().toUpperCase());
+      int res= profile.compareTo(o.profile);
+       if(res==0)
+         return 0;
+       else if(res>0)
+          return 1;
+       else if(res<0)
+          return -1;
+
+        return 0;
     }
 }

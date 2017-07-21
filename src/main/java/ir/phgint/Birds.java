@@ -5,11 +5,13 @@ import ir.phgint.Enum.*;
 import java.io.Serializable;
 
 
-public class Birds extends Janevaran  implements Cloneable,Serializable, Comparable<Janevaran> {
+public class Birds extends Janevaran{
     private boolean canFly;
     private boolean hasFeather;
 
-
+    private Birds(Profile profile) {
+        super(profile);
+    }
     private Birds(String name, boolean canFly, boolean hasFeather, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
         super(name, foods, t, habitats, pregnant);
         this.canFly = canFly;
@@ -23,12 +25,9 @@ public class Birds extends Janevaran  implements Cloneable,Serializable, Compara
         hasFeather = birds.hasFeather;
     }
 
-    public static Birds getBirdsInstance(String name ,boolean canFly,boolean hasFeather, Foods foods, String t,Habitats habitats, Pregnant pregnant){
-        return new Birds(name,canFly,hasFeather,foods,t,habitats,pregnant);
-    }
 
-    public static Birds getBirdsInstance(Birds birds){
-        return new Birds(birds);
+    protected static Birds getBirdsInstance(Profile profile){
+        return new Birds(profile);
     }
 
     public void setCanFly(boolean value) {
@@ -56,18 +55,14 @@ public class Birds extends Janevaran  implements Cloneable,Serializable, Compara
         else
             return Foods.Unknown;
 
-
     }
 
+    @Override
     public String toString() {
-        return "Birds name :" + getProfile().getName() + "\n" +
-                "Birds CanFly :" + getCanFly() + "\n" +
-                "Birds HasFeather :" + getHasFeather() + "\n" +
-                "Birds eat :" + getProfile().getFoodType() + "\n" +
-                "Birds talk:" + getProfile().getTalk() + "\n" +
-                "Birds Habitats:" + getProfile().getHabitats() + "\n" +
-                "Birds Birth:" + getProfile().getPregnant() + "\n";
-
+        return "Birds{" +
+                "canFly=" + canFly +
+                ", hasFeather=" + hasFeather +
+                '}';
     }
 
     public boolean equals(Birds birds) {
@@ -91,9 +86,41 @@ public class Birds extends Janevaran  implements Cloneable,Serializable, Compara
         return (Birds) super.clone();
     }
 
-    public int compareTo(Janevaran o) {
+    public void deepCopyFrom(Birds birds)  {
 
-        return super.compareTo(o);
+        Birds bird=new Birds(birds);
+
+    }
+
+    public Birds deepCopy()  {
+
+        return new Birds(this);
+    }
+
+    public void shallowCopyFrom(Birds birds) {
+
+        this.canFly =birds.canFly;
+        this.hasFeather=birds.hasFeather;
+    }
+
+    public Birds shallowCopy() {
+
+        Birds j = new Birds(this);
+        j.canFly = this.canFly;
+        j.hasFeather=this.hasFeather;
+        return j;
+    }
+
+    public int compareTo(Birds o) {
+
+        int res= super.compareTo(o) ;
+        if(res==0)
+        {
+            if(canFly==o.canFly && hasFeather==o.hasFeather)
+              return 0;
+        }
+        return res;
+
 
     }
 }

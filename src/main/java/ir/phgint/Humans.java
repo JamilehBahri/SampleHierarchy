@@ -7,13 +7,17 @@ import java.io.Serializable;
 /**
  * Created by Jamile on 09/06/2017.
  */
-public class Humans extends Mammals implements Cloneable, Serializable, Comparable<Janevaran> {
+public class Humans extends Mammals {
 
     private Ages age;
     private Gender gender;
 
+    private Humans(Profile profile) {
+        super(profile);
+    }
+
     private Humans(String name, Gender gender, Ages age, Foods foods, String t, Habitats habitats,
-                  Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+                   Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.age = age;
         this.gender = gender;
@@ -25,11 +29,8 @@ public class Humans extends Mammals implements Cloneable, Serializable, Comparab
         gender = humans.gender;
     }
 
-    public static Humans getHumansInstance(String name ,Gender gender,Ages age, Foods foods, String t,Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone){
-        return new Humans(name,gender,age,foods,t,habitats,pregnant,hasHair,hasBackbone);
-    }
-    public static Humans getHumansInstance(Humans humans){
-        return new Humans(humans);
+    protected static Humans getHumansInstance(Profile profile) {
+        return new Humans(profile);
     }
 
     public void setAge(Ages age) {
@@ -59,21 +60,13 @@ public class Humans extends Mammals implements Cloneable, Serializable, Comparab
 
     }
 
-
+    @Override
     public String toString() {
-        return "Humans name :" + getProfile().getName() + "\n" +
-                "Humans Gender :" + getGender() + "\n" +
-                "Humans Age :" + getAge() + "\n" +
-                "Humans eat :" + getProfile().getFoodType() + "\n" +
-                "Humans talk:" + getProfile().getTalk() + "\n" +
-                "Humans Habitats:" + getProfile().getHabitats() + "\n" +
-                "Humans Birth:" + getProfile().getPregnant() + "\n" +
-                "Humans hasHair:" + getHasHair() + "\n" +
-                "Humans hasBackbone :" + getHasBackbone() + "\n";
-
-
+        return "Humans{" +
+                "age=" + age +
+                ", gender=" + gender +
+                '}';
     }
-
 
     public boolean equals(Humans humans) {
         if (humans == this)
@@ -94,9 +87,48 @@ public class Humans extends Mammals implements Cloneable, Serializable, Comparab
         return (Humans) super.clone();
     }
 
-    public int compareTo(Janevaran o) {
+    public void deepCopyFrom(Humans humans) {
 
-        return super.compareTo(o);
+        Humans human = new Humans(humans);
+
+    }
+
+    public Humans deepCopy() {
+
+        return new Humans(this);
+    }
+
+    public void shallowCopyFrom(Humans humans) {
+
+        this.gender = humans.gender;
+        this.age = humans.age;
+    }
+
+    public Humans shallowCopy() {
+
+        Humans j = new Humans(this);
+        j.gender = this.gender;
+        j.age = this.age;
+        return j;
+    }
+
+
+    public int compareTo(Humans o) {
+        int res = super.compareTo(o);
+        int res1=0;
+        if (res == 0) {
+            if (gender != null && age != null) {
+                res = gender.compareTo(o.gender);
+                res1 = age.compareTo(o.age);
+                if (res == 0 && res1 == 0)
+                    return 0;
+                else if (res > 0)
+                    return 1;
+                else if (res < 0)
+                    return -1;
+            }
+        }
+        return res;
 
     }
 }

@@ -13,46 +13,91 @@ public class testComprable {
 
     @Before
     public void initObjectJanevaran() {
-        animals1 =  Animals.getAnimalsInstance("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
-        animals2 =  Animals.getAnimalsInstance("Dog", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
-        animals3 =  Animals.getAnimalsInstance("Cat", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
-        animals4 =  Animals.getAnimalsInstance("Lion", AnimalBehavior.Domestic, true, Foods.Carnivorous, "Hop Hop", Habitats.Dry, Pregnant.Viviparous, true, true);
 
-        humans1 =  Humans.getHumansInstance("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
-        humans2 =  Humans.getHumansInstance("Mina", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
-        humans3 =  Humans.getHumansInstance("Eli", Gender.Female, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
-        humans4 =  Humans.getHumansInstance("Ali", Gender.Male, Ages.Teenager, Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous, false, true);
+        Profile profileAnimals1 = Profile.getProfileInstance("Dog", Foods.Vegetarian, "HOP HOP", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileAnimals2 = Profile.getProfileInstance("Dog", Foods.Vegetarian, "HOP HOP", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileAnimals3 = Profile.getProfileInstance("Cat", Foods.Vegetarian, "MIO", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileAnimals4 = Profile.getProfileInstance("Lion", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Marsupial);
 
-        birds1 =  Birds.getBirdsInstance("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
-        birds2 =  Birds.getBirdsInstance("Eagle", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
-        birds3 =  Birds.getBirdsInstance("Canary", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
-        birds4 =  Birds.getBirdsInstance("Pigeon", true, true, Foods.Carnivorous, "Ji ... Ji", Habitats.Mountain, Pregnant.Oviparous);
+        Profile profileHumans1 = Profile.getProfileInstance("Mina", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileHumans2 = Profile.getProfileInstance("Mina", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileHumans3 = Profile.getProfileInstance("Ali", Foods.Carnivorous, "Voice", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileHumans4 = Profile.getProfileInstance("Reza", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
 
+
+        Profile profileBirds1 = Profile.getProfileInstance("ordak", Foods.Vegetarian, " JI JI", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileBirds2 = Profile.getProfileInstance("ordak", Foods.Vegetarian, " JI JI", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileBirds3 = Profile.getProfileInstance("Eugle", Foods.Vegetarian, "Voice", Habitats.Dry, Pregnant.Viviparous);
+        Profile profileBirds4 = Profile.getProfileInstance("ordak", Foods.Vegetarian, "Voice", Habitats.Lake, Pregnant.Viviparous);
+
+
+        animals1 = Animals.getAnimalsInstance(profileAnimals1);
+        animals2 = Animals.getAnimalsInstance(profileAnimals2);
+        animals3 = Animals.getAnimalsInstance(profileAnimals3);
+        animals4 = Animals.getAnimalsInstance(profileAnimals4);
+
+        humans1 = Humans.getHumansInstance(profileHumans1);
+        humans2 = Humans.getHumansInstance(profileHumans2);
+        humans3 = Humans.getHumansInstance(profileHumans3);
+        humans4 = Humans.getHumansInstance(profileHumans4);
+
+        birds1 = Birds.getBirdsInstance(profileBirds1);
+        birds2 = Birds.getBirdsInstance(profileBirds2);
+        birds3 = Birds.getBirdsInstance(profileBirds3);
+        birds4 = Birds.getBirdsInstance(profileBirds4);
     }
 
     @Test
-    public void compareEqualsName() {
+    public void compareEqualsAnimals() {
 
         Assert.assertEquals(animals1.compareTo(animals2), 0);
-        Assert.assertEquals(humans1.compareTo(humans2), 0);
-        Assert.assertEquals(birds1.compareTo(birds2), 0);
-
     }
 
     @Test
-    public void compareGreaterName() {
+    public void compareGreaterAnimals() {
 
         Assert.assertEquals(animals1.compareTo(animals3), 1);
-        Assert.assertEquals(humans1.compareTo(humans3), 8);
-        Assert.assertEquals(birds1.compareTo(birds3), 2);
     }
 
     @Test
-    public void compareSmallerName() {
+    public void compareSmallerAnimals() {
 
-        Assert.assertEquals(animals1.compareTo(animals4), -8);
-        Assert.assertEquals(humans4.compareTo(humans1), -12);
-        Assert.assertEquals(birds1.compareTo(birds4), -11);
+        Assert.assertEquals(animals1.compareTo(animals4), -1);
+    }
+
+    @Test
+    public void compareEqualsHumans() {
+
+        Assert.assertEquals(humans1.compareTo(humans2), 0);
+    }
+
+    @Test
+    public void compareGreaterHumans() {
+
+        Assert.assertEquals(humans1.compareTo(humans3), 1);
+    }
+
+    @Test
+    public void compareSmallerHumans() {
+        Assert.assertEquals(humans1.compareTo(humans4), -1);
+    }
+
+    @Test
+    public void compareEqualsBirds() {
+
+        Assert.assertEquals(birds1.compareTo(birds2), 0);
+    }
+
+    @Test
+    public void compareGreaterBirds() {
+
+        Assert.assertEquals(birds1.compareTo(birds3), 1);
+    }
+
+    @Test
+    public void compareSmallerBirds() {
+
+        Assert.assertEquals(birds1.compareTo(birds4), -1);
     }
 
 }
