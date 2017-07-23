@@ -1,51 +1,49 @@
 package ir.phgint;
 
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ir.phgint.Janevaran.Profile.*;
 import ir.phgint.Janevaran.*;
-
-import java.util.ArrayList;
 
 
 public class TestEquals {
 
-/*
     private Animals animals1, animals2;
     private Humans humans1, humans2;
     private Birds birds1, birds2;
-
+    private Profile profileAnimal1,profileAnimal2;
+    private Profile profileHumans1,profileHumans2;
+    private Profile profileBirds1,profileBirds2;
     @Before
     public void initObjectJanevaran() {
-        ProfileBuilder profileBuilderAnimal1 = new ProfileBuilder().name("Dog").foodType(Foods.Carnivorous).talk("Hop Hop")
-                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
-        ProfileBuilder profileBuilderAnimal2 = new ProfileBuilder().name("Cat").foodType(Foods.Carnivorous).talk("MIO")
-                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
 
-        animals1 = Animals.getAnimalsInstance(profileBuilderAnimal1.build());
-        animals2 = Animals.getAnimalsInstance(profileBuilderAnimal2.build());
+        profileAnimal1 =  ProfileBuilder.getProfileInstance().name("Dog").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        animals1 = AnimalsBuilder.getAnimalsInstance(profileAnimal1).animalBehavior(AnimalBehavior.Domestic).isQuadruped(true).build();
 
+        profileAnimal2 =  ProfileBuilder.getProfileInstance().name("Cat").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        animals2 = AnimalsBuilder.getAnimalsInstance(profileAnimal2).animalBehavior(AnimalBehavior.Domestic).isQuadruped(true).build();
 
-        ProfileBuilder profileBuilderHumans1 = new ProfileBuilder().name("Mina").foodType(Foods.Vegetarian).talk("Voice")
-                .habitats(Habitats.Beach).birthType(Pregnant.Viviparous);
-        ProfileBuilder profileBuilderHumans2 = new ProfileBuilder().name("Ali").foodType(Foods.Carnivorous).talk("Voice")
-                .habitats(Habitats.Beach).birthType(Pregnant.Viviparous);
-        humans1 = Humans.getHumansInstance(profileBuilderHumans1.build());
-        humans2 = Humans.getHumansInstance(profileBuilderHumans2.build());
+        profileHumans1 =  ProfileBuilder.getProfileInstance().name("Mina").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        humans1 = HumansBuilder.getHumansInstance(profileHumans1).age(Ages.Baby).gender(Gender.Female).build();
 
-        ProfileBuilder profileBuilderBirds1 = new ProfileBuilder().name("ordak").foodType(Foods.Vegetarian).talk(" JI JI")
-                .habitats(Habitats.Beach).birthType(Pregnant.Viviparous);
-        ProfileBuilder profileBuilderBirds2 = new ProfileBuilder().name("Eugle").foodType(Foods.Vegetarian).talk("Voice")
-                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
+        profileHumans2 =  ProfileBuilder.getProfileInstance().name("Ali").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        humans2 = HumansBuilder.getHumansInstance(profileHumans2).age(Ages.Baby).gender(Gender.Female).build();
 
-        birds1 = Birds.getBirdsInstance(profileBuilderBirds1.build());
-        birds2 = Birds.getBirdsInstance(profileBuilderBirds2.build());
+        profileBirds1 =  ProfileBuilder.getProfileInstance().name("Ordak").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        birds1 = BirdsBuilder.getBirdsInstance(profileBirds1).canFly(true).hasFeather(true).build();
 
+        profileBirds2 =  ProfileBuilder.getProfileInstance().name("Eugle").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        birds2 = BirdsBuilder.getBirdsInstance(profileBirds2).canFly(false).hasFeather(true).build();
 
     }
+
 
     @Test
     public void equalsAnimalsRefTest() {
@@ -79,7 +77,6 @@ public class TestEquals {
         Assert.assertFalse(birds1.getProfile().equals(birds2.getProfile()));
 
     }
-*/
 
 
 }

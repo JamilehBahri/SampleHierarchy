@@ -11,7 +11,7 @@ public class ProfileBuilder {
         return new ProfileBuilder(null);
     }
 
-    public static ProfileBuilder getProfileInstance(Profile  profile) {
+    public static ProfileBuilder getProfileInstance(Profile profile) {
         return new ProfileBuilder(profile);
     }
 
@@ -21,17 +21,17 @@ public class ProfileBuilder {
     }
 
     public ProfileBuilder foodType(Foods f) {
-       profile.setFoodType(f);
+        profile.setFoodType(f);
         return this;
     }
 
     public ProfileBuilder talk(String t) {
-       profile.setTalk(t);
+        profile.setTalk(t);
         return this;
     }
 
     public ProfileBuilder habitats(Habitats h) {
-       profile.setHabitats(h);
+        profile.setHabitats(h);
         return this;
     }
 
@@ -40,29 +40,27 @@ public class ProfileBuilder {
         return this;
     }
 
-    public  Profile build() {
-        Profile p = Profile.getProfileInstance(profile);
-        if (p == null) throw new NullPointerException("Profile Is Null");
-        return p;
-    }
+    public Profile build() {
 
+        if (profile.getName() == null) throw new NullPointerException("ProfileName Is Null");
+        if (profile.getFoodType() == null) throw new NullPointerException("ProfileFood Is Null");
+        if (profile.getTalk() == null) throw new NullPointerException("ProfileTalk Is Null");
+        if (profile.getHabitats() == null) throw new NullPointerException("ProfileHabitats Is Null");
+        if (profile.getPregnant() == null) throw new NullPointerException("ProfilePregnant Is Null");
+        if (profile.getName().length()>20) throw  new StringLengthException("Name is longer than 20");
+        if (profile.getTalk().length()>20) throw  new StringLengthException("Talk is longer than 20");
+        return profile;
+    }
 
     private ProfileBuilder(Profile pb) {
 
-        if (pb != null)
-        profile = pb;
-        else
-        {
-            name(profile.getName());
-            foodType(profile.getFoodType());
-            talk(profile.getTalk());
-            habitats(profile.getHabitats());
-            birthType(profile.getPregnant());
+        if (pb != null) {
+
+            profile = pb;
+        } else {
+            profile = Profile.getProfileInstance();
         }
-
     }
-
-
 
 
 }

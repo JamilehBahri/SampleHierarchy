@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/**
- * Created by Jamile on 09/06/2017.
- */
 public class Serialization {
 
     public static void serialize(Janevaran obj, String fileName) throws IOException {

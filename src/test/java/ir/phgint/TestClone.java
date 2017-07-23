@@ -4,35 +4,36 @@ package ir.phgint;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ir.phgint.Janevaran.Profile.*;
 import ir.phgint.Janevaran.*;
 
 
 public class TestClone {
 
-   /* private Animals animals;
+    private Animals animals;
     private Humans humans;
     private Birds birds;
 
+    private Profile profileAnimal;
+    private Profile profileHumans;
+    private Profile profileBirds;
+
+
     @Before
-    public void initObjectJanevaran(){
-        ProfileBuilder profileBuilderAnimal = new ProfileBuilder().name("Dog").foodType(Foods.Carnivorous).talk("Hop Hop")
-                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
-        ProfileBuilder profileBuilderHumans = new ProfileBuilder().name("Mina").foodType(Foods.Vegetarian).talk("Voice")
-                .habitats(Habitats.Beach).birthType(Pregnant.Viviparous);
-        ProfileBuilder profileBuilderBirds = new ProfileBuilder().name("Canary").foodType(F.Foods.Vegetarian).talk("Voice")
-                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
+    public void initObjectJanevaran() {
 
-        animals =  Animals.getAnimalsInstance(profileBuilderAnimal.build());
-        animals.setAnimalBehavior(AnimalBehavior.Domestic);
-        animals.setHasHair(true);
-        humans = Humans.getHumansInstance(profileBuilderHumans.build());
-        birds = Birds.getBirdsInstance(profileBuilderBirds.build());
+        profileAnimal =  ProfileBuilder.getProfileInstance().name("Dog").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        animals = AnimalsBuilder.getAnimalsInstance(profileAnimal).animalBehavior(AnimalBehavior.Domestic).isQuadruped(true).build();
 
+        profileBirds =  ProfileBuilder.getProfileInstance().name("Ordak").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        birds = BirdsBuilder.getBirdsInstance(profileBirds).canFly(true).hasFeather(true).build();
 
+        profileHumans=  ProfileBuilder.getProfileInstance().name("Mina").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        humans = HumansBuilder.getHumansInstance(profileHumans).age(Ages.Baby).gender(Gender.Female).build();
 
     }
-
     @Test
     public void animalsCloneValueTest(){
         try {
@@ -123,5 +124,5 @@ public class TestClone {
             e.printStackTrace();
         }
 
-    }*/
+    }
 }

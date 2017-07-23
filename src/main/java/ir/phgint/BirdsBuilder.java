@@ -6,8 +6,9 @@ import java.security.InvalidParameterException;
 
 public class BirdsBuilder {
 
-    private Profile profile;
     private Birds birds;
+
+
 
 
     public static BirdsBuilder getBirdsInstance(Birds birds) {
@@ -26,6 +27,7 @@ public class BirdsBuilder {
         return new BirdsBuilder(null, null);
     }
 
+
     public BirdsBuilder canFly(boolean x) {
         birds.setCanFly(x);
         return this;
@@ -37,25 +39,25 @@ public class BirdsBuilder {
     }
 
     public Birds build() {
-        Birds a = Birds.getBirdsInstance(profile);
-        if (a == null) throw new NullPointerException("Profile Is Null");
-        a.setProfile(profile);
-        return a;
+
+
+        if (birds.getCanFly() && !birds.getHasFeather()) {
+            throw new InvalidParameterException("CanFly  true  , HasFeather  False");
+        }
+        return birds;
     }
 
-    private BirdsBuilder(Birds birds, Profile pb) {
+    private BirdsBuilder(Birds b, Profile pb) {
 
-        if (birds != null) {
-            birds.setCanFly(birds.getCanFly());
-            birds.setHasFeather(birds.getHasFeather());
-            if (birds.getCanFly() == true && birds.getHasFeather() == false) {
-                throw new InvalidParameterException("CanFly  true  , HasFeather  False");
-            }
-        }  if (pb != null)
-            profile = pb;
+        if (b != null) {
+            birds = Birds.getBirdsInstance(b);
+        } else if (pb != null)
+            birds = Birds.getBirdsInstance(pb);
+        else if (b != null && pb != null){
+            birds = Birds.getBirdsInstance(pb, b);
+        }
         else {
-            canFly(birds.getCanFly());
-            hasFeather(birds.getHasFeather());
+            birds = Birds.getBirdsInstance();
         }
     }
 

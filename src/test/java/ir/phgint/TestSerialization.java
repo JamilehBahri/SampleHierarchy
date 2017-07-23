@@ -4,12 +4,9 @@ package ir.phgint;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ir.phgint.Janevaran.Profile.*;
 import ir.phgint.Janevaran.*;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.PrimitiveIterator;
 
 public class TestSerialization {
 
@@ -29,22 +26,17 @@ public class TestSerialization {
     @Before
     public void initObjectJanevaran() {
 
-        profileAnimal= Profile.getProfileInstance("Dog", Foods.Carnivorous, "Hop Hop", Habitats.Beach, Pregnant.Viviparous);
-        profileAnimal = ProfileBuilder.getProfileInstance(profileAnimal).build();
-        animals = AnimalsBuilder.getAnimalsInstance(profileAnimal).build();
+        profileAnimal =  ProfileBuilder.getProfileInstance().name("Dog").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        animals = AnimalsBuilder.getAnimalsInstance(profileAnimal).animalBehavior(AnimalBehavior.Domestic).isQuadruped(true).build();
 
-        profileHumans= Profile.getProfileInstance("Mina", Foods.Vegetarian, "Voice", Habitats.Beach, Pregnant.Viviparous);
-        profileHumans = ProfileBuilder.getProfileInstance(profileHumans).build();
-        humans = HumansBuilder.getHumansInstance(profileHumans).build();
+        profileBirds =  ProfileBuilder.getProfileInstance().name("Ordak").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        birds = BirdsBuilder.getBirdsInstance(profileBirds).canFly(true).hasFeather(true).build();
 
-        profileBirds= Profile.getProfileInstance("Ordak", Foods.Carnivorous, "Voice", Habitats.Beach, Pregnant.Viviparous);
-        profileBirds = ProfileBuilder.getProfileInstance(profileBirds).build();
-        Birds b = Birds.getBirdsInstance(profileAnimal);
-        b.setCanFly(true);
-        b.setHasFeather(true);
-
-        birds = BirdsBuilder.getBirdsInstance(b,profileBirds).build();
-
+        profileHumans=  ProfileBuilder.getProfileInstance().name("Mina").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        humans = HumansBuilder.getHumansInstance(profileHumans).age(Ages.Baby).gender(Gender.Female).build();
 
     }
 
@@ -75,6 +67,7 @@ public class TestSerialization {
             e.printStackTrace();
         }
     }
+
 
     @Test
     public void serializeBirdsTest() {

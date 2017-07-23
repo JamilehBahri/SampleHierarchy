@@ -3,37 +3,39 @@ package ir.phgint;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ir.phgint.Janevaran.Profile.*;
 import ir.phgint.Janevaran.*;
 
-/**
- * Created by Jamile on 11/06/2017.
- */
 public class TestHash {
-    /*Animals animals;
+    Animals animals;
     Humans humans;
     Birds birds;
+
+    private Profile profileAnimal;
+    private Profile profileHumans;
+    private Profile profileBirds;
 
     @Before
     public void initObjectJanevaran() {
 
-        ProfileBuilder profileBuilderAnimal = new ProfileBuilder().name("Dog").foodType(Foods.Carnivorous).talk("Hop Hop")
-                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
-        ProfileBuilder profileBuilderHumans = new ProfileBuilder().name("Mina").foodType(Foods.Vegetarian).talk("Voice")
-                .habitats(Habitats.Beach).birthType(Pregnant.Viviparous);
-        ProfileBuilder profileBuilderBirds = new ProfileBuilder().name("Canary").foodType(Foods.Vegetarian).talk("Voice")
-                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
+        profileAnimal = ProfileBuilder.getProfileInstance().name("Dog").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        animals = AnimalsBuilder.getAnimalsInstance(profileAnimal).animalBehavior(AnimalBehavior.Domestic).isQuadruped(true).build();
 
-        animals =  Animals.getAnimalsInstance(profileBuilderAnimal.build());
-        humans = Humans.getHumansInstance(profileBuilderHumans.build());
-        birds = Birds.getBirdsInstance(profileBuilderBirds.build());
+        profileBirds = ProfileBuilder.getProfileInstance().name("Ordak").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        birds = BirdsBuilder.getBirdsInstance(profileBirds).canFly(true).hasFeather(true).build();
+
+        profileHumans = ProfileBuilder.getProfileInstance().name("Mina").foodType(Foods.Carnivorous).talk("Hop").habitats(Habitats.Dry)
+                .birthType(Pregnant.Viviparous).build();
+        humans = HumansBuilder.getHumansInstance(profileHumans).age(Ages.Baby).gender(Gender.Female).build();
+
     }
 
     @Test
     public void getHashAnimalsTest() {
 
         int hash = animals.hashCode();
-        Assert.assertEquals(hash,animals.hashCode());
+        Assert.assertEquals(hash, animals.hashCode());
     }
 
     @Test
@@ -48,7 +50,7 @@ public class TestHash {
         int hash = birds.hashCode();
         Assert.assertEquals(hash, birds.hashCode());
 
-    }*/
+    }
 
 
 }

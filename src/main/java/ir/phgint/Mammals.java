@@ -1,23 +1,16 @@
 package ir.phgint;
 
-
-
-import ir.phgint.Janevaran.Profile.*;
-
-//import java.util.stream.Node;
-
 public abstract class Mammals extends Janevaran {
 
     private boolean hasHair;
     private boolean hasBackbone;
-
 
     protected Mammals(Profile profile) {
         super(profile);
     }
 
 
-    protected Mammals(String name, Foods foods, String t,Habitats habitats,Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+    protected Mammals(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant);
         this.hasHair = hasHair;
         this.hasBackbone = hasBackbone;
@@ -29,14 +22,19 @@ public abstract class Mammals extends Janevaran {
         hasBackbone = mammals.hasBackbone;
     }
 
+    public Mammals() {
+        super();
 
-//    public static Mammals getMammalsInstance(ObjectType objectType, Profile profile) {
-//        if (objectType ==ObjectType.ANIMALS)
-//            return Animals.getAnimalsInstance(profile);
-//        else if (objectType == ObjectType.HUMANS)
-//            return Humans.getHumansInstance(profile);
-//        return null;
-//    }
+    }
+
+
+    public static Mammals getMammalsInstance(ObjectType objectType, Profile profile) {
+        if (objectType == ObjectType.ANIMALS)
+            return Animals.getAnimalsInstance(profile);
+        else if (objectType == ObjectType.HUMANS)
+            return Humans.getHumansInstance(profile);
+        return null;
+    }
 
     public void setHasHair(boolean hair) {
         this.hasHair = hair;
@@ -63,6 +61,7 @@ public abstract class Mammals extends Janevaran {
             return false;
         return super.equals(mammals) && (this.hasHair == mammals.hasHair) && (this.hasBackbone == mammals.hasBackbone);
     }
+
     @Override
     public int hashCode() {
         int hash = super.hashCode();
@@ -114,7 +113,7 @@ public abstract class Mammals extends Janevaran {
 
     public Mammals shallowCopy() {
 
-      Mammals j=(Mammals) super.shallowCopy();
+        Mammals j = (Mammals) super.shallowCopy();
         j.hasHair = this.hasHair;
         j.hasBackbone = this.hasBackbone;
         return j;

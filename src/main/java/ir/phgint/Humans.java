@@ -1,12 +1,9 @@
 package ir.phgint;
 
-
-
 public class Humans extends Mammals {
 
     private Ages age;
     private Gender gender;
-
 
     private Humans(Profile profile) {
         super(profile);
@@ -24,11 +21,34 @@ public class Humans extends Mammals {
         age = humans.age;
         gender = humans.gender;
     }
+    private Humans(Profile p , Humans humans) {
+        super(p);
+        this.age = humans.age;
+        this.gender = humans.gender;
+    }
+
+    public Humans() {
+        super();
+    }
 
     public static Humans getHumansInstance(Profile profile) {
 
         return new Humans(profile);
     }
+
+    public static Humans getHumansInstance(Profile profile,Humans humans) {
+        return new Humans(profile , humans);
+    }
+
+    public static Humans getHumansInstance(Humans humans) {
+        return new Humans(humans);
+    }
+
+    public static Humans getHumansInstance() {
+        return new Humans();
+    }
+
+
     public void setAge(Ages age) {
         this.age = age;
     }

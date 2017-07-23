@@ -1,21 +1,16 @@
 package ir.phgint;
 
-
-import com.sun.org.apache.bcel.internal.generic.ObjectType;
-
 import java.io.Serializable;
-
 
 public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopyable, Serializable, Comparable<Janevaran> {
 
     private Profile profile;
 
-
     protected Janevaran(Profile profiles) {
-        profile =Profile.getProfileInstance(profiles);
+        profile = Profile.getProfileInstance(profiles);
     }
 
-    protected Janevaran(String name, Foods foods, String t, Habitats habitats,Pregnant pregnant) {
+    protected Janevaran(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
         profile = Profile.getProfileInstance(name, foods, t, habitats, pregnant);
     }
 
@@ -23,16 +18,20 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
         profile = Profile.getProfileInstance(janevaran.profile);
     }
 
-//    public static Janevaran getJanevaranInstance(ObjectType objectType, Profile profile) {
-//        if (objectType == ObjectType.ANIMALS)
-//            return Animals.getAnimalsInstance(profile);
-//        else if (objectType == ObjectType.HUMANS)
-//            return Humans.getHumansInstance(profile);
-//        else if (objectType == ObjectType.BIRDS)
-//            return Birds.getBirdsInstance(profile);
-//
-//        return null;
-//    }
+    public Janevaran() {
+
+    }
+
+    public static Janevaran getJanevaranInstance(ObjectType objectType, Profile profile) {
+        if (objectType == ObjectType.ANIMALS)
+            return Animals.getAnimalsInstance(profile);
+        else if (objectType == ObjectType.HUMANS)
+            return Humans.getHumansInstance(profile);
+        else if (objectType == ObjectType.BIRDS)
+            return SingleTonBirds.getBirdsInstance(profile);
+
+        return null;
+    }
 
     public void setProfile(Profile profile) {
         this.profile = profile;
@@ -85,7 +84,7 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
 
         try {
             return this.clone();
-            } catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
         return null;
@@ -114,54 +113,54 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
     }
     //inner class
 
-        enum Ages {
-            Baby,
-            Child,
-            Teenager,
-            Young,
-            Mature,
-            Middleage,
-            Old
+    enum Ages {
+        Baby,
+        Child,
+        Teenager,
+        Young,
+        Mature,
+        Middleage,
+        Old
 
-        }
+    }
 
-        enum AnimalBehavior {
-            Wild,
-            Domestic,
-            Unknown
-        }
+    enum AnimalBehavior {
+        Wild,
+        Domestic,
+        Unknown
+    }
 
-        enum Foods {
-            Vegetarian,
-            Herbivorous,
-            Carnivorous,
-            Unknown
-        }
+    enum Foods {
+        Vegetarian,
+        Herbivorous,
+        Carnivorous,
+        Unknown
+    }
 
-        enum Gender {
-            Male,
-            Female
-        }
+    enum Gender {
+        Male,
+        Female
+    }
 
-        enum Habitats {
-            Dry,
-            Water,
-            Beach,
-            Jungle,
-            Mountain,
-            Lake
+    enum Habitats {
+        Dry,
+        Water,
+        Beach,
+        Jungle,
+        Mountain,
+        Lake
 
-        }
+    }
 
-        enum ObjectType {
-            ANIMALS,HUMANS,BIRDS
-        }
+    enum ObjectType {
+        ANIMALS, HUMANS, BIRDS
+    }
 
-        enum  Pregnant {
-            Viviparous,// bacheza
-            Oviparous,//tokhmghozar
-            Marsupial//kisedar
-        }
+    enum Pregnant {
+        Viviparous,// bacheza
+        Oviparous,//tokhmghozar
+        Marsupial//kisedar
+    }
 
     public static class Profile implements Cloneable, Serializable {
 
@@ -172,12 +171,16 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
         private Pregnant birthType;
 
         public static Profile getProfileInstance(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
-                      return new Profile(name, foods, t, habitats, pregnant);
-    }
+            return new Profile(name, foods, t, habitats, pregnant);
+        }
 
-            public static Profile getProfileInstance(Profile profile) {
-                return new Profile(profile);
-            }
+        public static Profile getProfileInstance(Profile profile) {
+            return new Profile(profile);
+        }
+
+        public static Profile getProfileInstance() {
+            return new Profile();
+        }
 
         private Profile(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
             this.name = name;
@@ -195,6 +198,9 @@ public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopya
             birthType = profile.birthType;
         }
 
+        private Profile() {
+
+        }
 
 
         public void setName(String name) {

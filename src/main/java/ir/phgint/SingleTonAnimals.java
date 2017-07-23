@@ -1,55 +1,60 @@
 package ir.phgint;
 
-public class Animals extends Mammals {
+public class SingleTonAnimals extends Mammals {
 
+    private  static final SingleTonAnimals INSTANCE = new SingleTonAnimals();
     private AnimalBehavior animalBehavior;
     private boolean isQuadruped;
 
-    private Animals(Profile profile) {
+    private SingleTonAnimals(Profile profile) {
         super(profile);
     }
 
-    private Animals(String name, AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
+    private SingleTonAnimals(String name, AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
                     Habitats habitats, Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.animalBehavior = animalBehavior;
         this.isQuadruped = isQuadruped;
     }
 
-    private Animals(Profile p, Animals animals) {
+    private SingleTonAnimals(Profile p, SingleTonAnimals animals) {
         super(p);
         this.animalBehavior = animals.animalBehavior;
         this.isQuadruped = animals.isQuadruped;
     }
 
-    private Animals(Animals animals, AnimalBehavior animalBehavior, boolean isQuadruped) {
+    private SingleTonAnimals(SingleTonAnimals animals, AnimalBehavior animalBehavior, boolean isQuadruped) {
         super(animals);
         animals.animalBehavior = animalBehavior;
         animals.isQuadruped = isQuadruped;
     }
 
-    private Animals(Animals animals) {
+    private SingleTonAnimals(SingleTonAnimals animals) {
         super(animals);
         this.animalBehavior = animals.animalBehavior;
         this.isQuadruped = animals.isQuadruped;
     }
-    private Animals() {
+    private SingleTonAnimals() {
         super();
     }
 
-    public static Animals getAnimalsInstance(Profile profile, Animals animals) {
-        return new Animals(profile, animals);
+    public static SingleTonAnimals getAnimalsInstance(Profile profile, SingleTonAnimals animals) {
+        INSTANCE.shallowCopyFrom(animals);
+        INSTANCE.setProfile(ProfileBuilder.getProfileInstance(profile).build());
+        return INSTANCE;
     }
 
-    public static Animals getAnimalsInstance(Profile profile) {
-        return new Animals(profile);
+    public static SingleTonAnimals getAnimalsInstance(Profile profile) {
+        INSTANCE.setProfile(ProfileBuilder.getProfileInstance(profile).build());
+        return  INSTANCE;
     }
 
-    public static Animals getAnimalsInstance(Animals animals) {
-        return new Animals(animals);
+    public static SingleTonAnimals getAnimalsInstance(SingleTonAnimals animals) {
+        INSTANCE.deepCopyFrom(animals);
+        return INSTANCE;
     }
-    public static Animals getAnimalsInstance() {
-        return new Animals();
+    public static SingleTonAnimals getAnimalsInstance() {
+        return INSTANCE;
     }
 
 
@@ -90,7 +95,7 @@ public class Animals extends Mammals {
         return sb.toString();
     }
 
-    public boolean equals(Animals animals) {
+    public boolean equals(SingleTonAnimals animals) {
         if (animals == this)
             return true;
         if (animals == null)
@@ -106,14 +111,14 @@ public class Animals extends Mammals {
         return hash;
     }
 
-    public Animals clone() throws CloneNotSupportedException {
-        Animals aa = (Animals) super.clone();
+    public SingleTonAnimals clone() throws CloneNotSupportedException {
+        SingleTonAnimals aa = (SingleTonAnimals) super.clone();
         aa.animalBehavior = animalBehavior;
         aa.isQuadruped = isQuadruped;
         return aa;
     }
 
-    public void deepCopyFrom(Animals animals) {
+    public void deepCopyFrom(SingleTonAnimals animals) {
         super.deepCopyFrom(animals);
         this.animalBehavior = animals.animalBehavior;
         this.isQuadruped = animals.isQuadruped;
@@ -121,29 +126,29 @@ public class Animals extends Mammals {
 
     }
 
-    public Animals deepCopy() {
-        Animals animals = (Animals) super.deepCopy();
+    public SingleTonAnimals deepCopy() {
+        SingleTonAnimals animals = (SingleTonAnimals) super.deepCopy();
         animals.animalBehavior = this.animalBehavior;
         animals.isQuadruped = this.isQuadruped;
         return animals;
     }
 
-    public void shallowCopyFrom(Animals animals) {
+    public void shallowCopyFrom(SingleTonAnimals animals) {
         super.shallowCopyFrom(animals);
         this.animalBehavior = animals.animalBehavior;
         this.isQuadruped = animals.isQuadruped;
     }
 
-    public Animals shallowCopy() {
+    public SingleTonAnimals shallowCopy() {
 
-        Animals a = (Animals) super.shallowCopy();
+        SingleTonAnimals a = (SingleTonAnimals) super.shallowCopy();
         a.animalBehavior = this.animalBehavior;
         a.isQuadruped = this.isQuadruped;
         return a;
     }
 
 
-    public int compareTo(Animals o) {
+    public int compareTo(SingleTonAnimals o) {
 
         int res = super.compareTo(o);
         if (res == 0) {
@@ -162,6 +167,4 @@ public class Animals extends Mammals {
         }
         return res;
     }
-
-
 }

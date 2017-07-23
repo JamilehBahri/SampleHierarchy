@@ -4,7 +4,7 @@ import ir.phgint.Janevaran.*;
 
 public class AnimalsBuilder {
 
-    private Profile profile;
+
     private Animals animals;
 
     public static AnimalsBuilder getAnimalsInstance(Animals animals) {
@@ -34,24 +34,23 @@ public class AnimalsBuilder {
     }
 
     public Animals build() {
-        Animals a = Animals.getAnimalsInstance(profile);
-        if (a == null) throw new NullPointerException("Profile Is Null");
-        a.setProfile(profile);
-        return a;
+        if (animals.getAnimalBehavior() == null) throw new NullPointerException("AnimalBehavior Is Null");
+        return animals;
     }
 
-    private AnimalsBuilder(Animals animal, Profile pb) {
+    private AnimalsBuilder(Animals a, Profile pb) {
 
-        if (animal != null) {
-            animals.setAnimalBehavior(animal.getAnimalBehavior());
-            animals.setIsQuadruped(animal.getIsQuadruped());
+        if (a != null) {
+            animals = Animals.getAnimalsInstance(a);
         } else if (pb != null)
-            profile = pb;
-        else {
-            animalBehavior(animal.getAnimalBehavior());
-            isQuadruped(animal.getIsQuadruped());
-
+            animals = Animals.getAnimalsInstance(pb);
+        else if (a != null && pb != null){
+            animals = Animals.getAnimalsInstance(pb, a);
         }
+        else {
+            animals = Animals.getAnimalsInstance();
+        }
+
     }
 
 }

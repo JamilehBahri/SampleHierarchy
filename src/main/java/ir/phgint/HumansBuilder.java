@@ -3,7 +3,6 @@ import ir.phgint.Janevaran.*;
 
 public class HumansBuilder {
 
-    private Profile profile;
     private Humans humans;
 
     public static HumansBuilder getHumansInstance(Humans humans) {
@@ -31,26 +30,25 @@ public class HumansBuilder {
     }
 
     public Humans build() {
-        Humans a = Humans.getHumansInstance(profile);
-        if (a == null) throw new NullPointerException("Profile Is Null");
-        a.setProfile(profile);
-        return a;
+
+        if (humans.getAge() == null) throw new NullPointerException("Age Is Null");
+        if (humans.getGender() == null) throw new NullPointerException("Gender Is Null");
+        return humans;
     }
 
-    private HumansBuilder(Humans humans, Profile pb) {
+    private HumansBuilder(Humans h, Profile pb) {
 
-        if (humans !=null)
-        {
-            humans.setAge(humans.getAge());
-            humans.setGender(humans.getGender());
+
+        if (h != null) {
+            humans= Humans.getHumansInstance(h);
+        } else if (pb != null)
+            humans =Humans.getHumansInstance(pb);
+        else if (h != null && pb != null){
+            humans = Humans.getHumansInstance(pb, h);
+
         }
-        if(pb !=null)
-        profile = pb;
-        else
-        {
-            age(humans.getAge());
-            gender(humans.getGender());
-
+        else {
+            humans = Humans.getHumansInstance();
         }
     }
 

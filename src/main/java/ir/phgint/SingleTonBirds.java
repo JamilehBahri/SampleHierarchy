@@ -2,50 +2,56 @@ package ir.phgint;
 
 
 
-public class Birds extends Janevaran {
+public class SingleTonBirds extends Janevaran {
     private boolean canFly;
     private boolean hasFeather;
+    private static final SingleTonBirds INSTANCE = new SingleTonBirds();
 
-    private Birds(Profile profile) {
+
+    private SingleTonBirds(Profile profile) {
         super(profile);
     }
 
-    private Birds(String name, boolean canFly, boolean hasFeather, Foods foods, String t, Habitats habitats,Pregnant pregnant) {
+    private SingleTonBirds(String name, boolean canFly, boolean hasFeather, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
         super(name, foods, t, habitats, pregnant);
         this.canFly = canFly;
         this.hasFeather = hasFeather;
 
     }
 
-    private Birds(Birds birds) {
+    private SingleTonBirds(SingleTonBirds birds) {
         super(birds);
         canFly = birds.canFly;
         hasFeather = birds.hasFeather;
     }
 
-    private Birds(Profile p , Birds birds) {
+    private SingleTonBirds(Profile p, SingleTonBirds birds) {
         super(p);
         this.canFly = birds.canFly;
         this.hasFeather = birds.hasFeather;
     }
-
-    private Birds() {
+    private SingleTonBirds() {
         super();
     }
 
-    public static Birds getBirdsInstance(Profile profile) {
-        return new Birds(profile);
+    public static SingleTonBirds getBirdsInstance(Profile profile) {
+
+        INSTANCE.setProfile(ProfileBuilder.getProfileInstance(profile).build());
+        return  INSTANCE;
     }
-    public static Birds getBirdsInstance(Profile profile,Birds birds) {
-        return new Birds(profile , birds);
+    public static SingleTonBirds getBirdsInstance(Profile profile,SingleTonBirds birds) {
+        INSTANCE.deepCopyFrom(birds);
+        INSTANCE.setProfile(ProfileBuilder.getProfileInstance(profile).build());
+        return INSTANCE;
     }
 
-    public static Birds getBirdsInstance(Birds birds) {
-        return new Birds(birds);
+    public static SingleTonBirds getBirdsInstance(SingleTonBirds birds) {
+        INSTANCE.deepCopyFrom(birds);
+        return INSTANCE;
     }
 
-    public static Birds getBirdsInstance() {
-        return new Birds();
+    public static SingleTonBirds getBirdsInstance() {
+        return INSTANCE;
     }
 
 
@@ -89,8 +95,8 @@ public class Birds extends Janevaran {
     }
 
 
-    public boolean equals(Birds birds) {
-        if (this == birds) return true;
+    public boolean equals(SingleTonBirds birds) {
+//        if (this == birds) return true;
         if (birds == null) return false;
 
         return super.equals(birds) && (this.canFly == birds.canFly) && (this.hasFeather == birds.hasFeather);
@@ -105,14 +111,14 @@ public class Birds extends Janevaran {
     }
 
 
-    public Birds clone() throws CloneNotSupportedException {
-        Birds bb = (Birds) super.clone();
+    public SingleTonBirds clone() throws CloneNotSupportedException {
+        SingleTonBirds bb = (SingleTonBirds) super.clone();
         bb.canFly = canFly;
         bb.hasFeather = hasFeather;
         return bb;
     }
 
-    public void deepCopyFrom(Birds birds) {
+    public void deepCopyFrom(SingleTonBirds birds) {
 
         super.deepCopyFrom(birds);
         this.canFly = birds.canFly;
@@ -120,31 +126,31 @@ public class Birds extends Janevaran {
 
     }
 
-    public Birds deepCopy() {
+    public SingleTonBirds deepCopy() {
 
-        Birds birds = (Birds) super.deepCopy();
+        SingleTonBirds birds = (SingleTonBirds) super.deepCopy();
         birds.canFly = this.canFly;
         birds.hasFeather = this.hasFeather;
         return birds;
 
     }
 
-    public void shallowCopyFrom(Birds birds) {
+    public void shallowCopyFrom(SingleTonBirds birds) {
 
         super.shallowCopyFrom(birds);
         this.canFly = birds.canFly;
         this.hasFeather = birds.hasFeather;
     }
 
-    public Birds shallowCopy() {
+    public SingleTonBirds shallowCopy() {
 
-        Birds b = (Birds) super.shallowCopy();
+        SingleTonBirds b = (SingleTonBirds) super.shallowCopy();
         b.canFly = this.canFly;
         b.hasFeather = this.hasFeather;
         return b;
     }
 
-    public int compareTo(Birds o) {
+    public int compareTo(SingleTonBirds o) {
 
         int res = super.compareTo(o);
         if (res == 0) {
