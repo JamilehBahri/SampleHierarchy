@@ -39,7 +39,11 @@ public class TestSerialization {
 
         profileBirds= Profile.getProfileInstance("Ordak", Foods.Carnivorous, "Voice", Habitats.Beach, Pregnant.Viviparous);
         profileBirds = ProfileBuilder.getProfileInstance(profileBirds).build();
-        birds = BirdsBuilder.getBirdsInstance(profileBirds).build();
+        Birds b = Birds.getBirdsInstance(profileAnimal);
+        b.setCanFly(true);
+        b.setHasFeather(true);
+
+        birds = BirdsBuilder.getBirdsInstance(b,profileBirds).build();
 
 
     }

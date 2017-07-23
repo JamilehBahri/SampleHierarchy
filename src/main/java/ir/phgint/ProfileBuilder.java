@@ -5,11 +5,11 @@ import ir.phgint.Janevaran.*;
 public class ProfileBuilder {
 
     private Profile profile;
-    private Birds birds;
 
-//    public static ProfileBuilder getProfileInstance(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
-//        return new ProfileBuilder(name, foods, t, habitats, pregnant);
-//    }
+
+    public static ProfileBuilder getProfileInstance() {
+        return new ProfileBuilder(null);
+    }
 
     public static ProfileBuilder getProfileInstance(Profile  profile) {
         return new ProfileBuilder(profile);
@@ -42,27 +42,26 @@ public class ProfileBuilder {
 
     public  Profile build() {
         Profile p = Profile.getProfileInstance(profile);
+        if (p == null) throw new NullPointerException("Profile Is Null");
         return p;
     }
 
-    private ProfileBuilder(Profile builder) {
 
-        profile = builder;
-//        profile.setName( builder.getName());
-//        profile.setFoodType( builder.getFoodType());
-//        profile.setTalk( builder.getTalk());
-//        profile.setHabitats( builder.getHabitats());
-//        profile.setPregnant( builder.getPregnant());
+    private ProfileBuilder(Profile pb) {
+
+        if (pb != null)
+        profile = pb;
+        else
+        {
+            name(profile.getName());
+            foodType(profile.getFoodType());
+            talk(profile.getTalk());
+            habitats(profile.getHabitats());
+            birthType(profile.getPregnant());
+        }
 
     }
-//    private ProfileBuilder(String name, Foods foods, String t, Habitats habitats, Pregnant pregnant) {
-//
-//        profile.setName(name);
-//        profile.setFoodType(foods);
-//        profile.setTalk(t);
-//        profile.setHabitats(habitats);
-//        profile.setPregnant(pregnant);
-//    }
+
 
 
 
