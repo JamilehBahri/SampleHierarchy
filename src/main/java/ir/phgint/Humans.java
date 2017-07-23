@@ -4,16 +4,16 @@ package ir.phgint;
 
 public class Humans extends Mammals {
 
-    private A.Ages age;
-    private G.Gender gender;
+    private Ages age;
+    private Gender gender;
 
 
     private Humans(Profile profile) {
         super(profile);
     }
 
-    private Humans(String name, G.Gender gender, A.Ages age, F.Foods foods, String t, H.Habitats habitats,
-                   P.Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+    private Humans(String name, Gender gender, Ages age, Foods foods, String t, Habitats habitats,
+                   Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.age = age;
         this.gender = gender;
@@ -26,33 +26,33 @@ public class Humans extends Mammals {
     }
 
     public static Humans getHumansInstance(Profile profile) {
+
         return new Humans(profile);
     }
-
-    public void setAge(A.Ages age) {
+    public void setAge(Ages age) {
         this.age = age;
     }
 
-    public A.Ages getAge() {
+    public Ages getAge() {
         return age;
     }
 
-    public void setGender(G.Gender gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    public G.Gender getGender() {
+    public Gender getGender() {
         return gender;
     }
 
 
-    public F.Foods eat(F.Foods food) {
-        if (food.equals(F.Foods.Carnivorous))
-            return F.Foods.Carnivorous;
-        else if (food.equals(F.Foods.Vegetarian))
-            return F.Foods.Vegetarian;
+    public Foods eat(Foods food) {
+        if (food.equals(Foods.Carnivorous))
+            return Foods.Carnivorous;
+        else if (food.equals(Foods.Vegetarian))
+            return Foods.Vegetarian;
         else
-            return F.Foods.Unknown;
+            return Foods.Unknown;
 
     }
 

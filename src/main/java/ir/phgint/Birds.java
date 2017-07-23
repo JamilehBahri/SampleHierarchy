@@ -10,7 +10,7 @@ public class Birds extends Janevaran {
         super(profile);
     }
 
-    private Birds(String name, boolean canFly, boolean hasFeather, F.Foods foods, String t, H.Habitats habitats, P.Pregnant pregnant) {
+    private Birds(String name, boolean canFly, boolean hasFeather, Foods foods, String t, Habitats habitats,Pregnant pregnant) {
         super(name, foods, t, habitats, pregnant);
         this.canFly = canFly;
         this.hasFeather = hasFeather;
@@ -45,13 +45,13 @@ public class Birds extends Janevaran {
     }
 
 
-    public F.Foods eat(F.Foods food) {
-        if (food.equals(F.Foods.Carnivorous))
-            return F.Foods.Carnivorous;
-        else if (food.equals(F.Foods.Vegetarian))
-            return F.Foods.Vegetarian;
+    public Foods eat(Foods food) {
+        if (food.equals(Foods.Carnivorous))
+            return Foods.Carnivorous;
+        else if (food.equals(Foods.Vegetarian))
+            return Foods.Vegetarian;
         else
-            return F.Foods.Unknown;
+            return Foods.Unknown;
 
     }
 

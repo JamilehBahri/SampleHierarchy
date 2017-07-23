@@ -4,6 +4,8 @@ package ir.phgint;
 
 import ir.phgint.Janevaran.Profile.*;
 
+//import java.util.stream.Node;
+
 public abstract class Mammals extends Janevaran {
 
     private boolean hasHair;
@@ -14,7 +16,8 @@ public abstract class Mammals extends Janevaran {
         super(profile);
     }
 
-    protected Mammals(String name, F.Foods foods, String t, H.Habitats habitats, P.Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+
+    protected Mammals(String name, Foods foods, String t,Habitats habitats,Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant);
         this.hasHair = hasHair;
         this.hasBackbone = hasBackbone;
@@ -27,13 +30,13 @@ public abstract class Mammals extends Janevaran {
     }
 
 
-    public static Mammals getMammalsInstance(ObjectTypes.Type objectType, Profile profile) {
-        if (objectType ==ObjectTypes.Type.ANIMALS)
-            return Animals.getAnimalsInstance(profile);
-        else if (objectType == ObjectTypes.Type.HUMANS)
-            return Humans.getHumansInstance(profile);
-        return null;
-    }
+//    public static Mammals getMammalsInstance(ObjectType objectType, Profile profile) {
+//        if (objectType ==ObjectType.ANIMALS)
+//            return Animals.getAnimalsInstance(profile);
+//        else if (objectType == ObjectType.HUMANS)
+//            return Humans.getHumansInstance(profile);
+//        return null;
+//    }
 
     public void setHasHair(boolean hair) {
         this.hasHair = hair;

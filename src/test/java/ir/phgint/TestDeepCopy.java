@@ -9,43 +9,43 @@ import ir.phgint.Janevaran.*;
 
 public class TestDeepCopy {
 
-    private Animals animals1, animals2;
+  /*  private Animals animals1, animals2;
     private Humans humans1, humans2, humans3, humans4;
     private Birds birds1, birds2, birds3, birds4;
 
     @Before
     public void initObjectJanevaran() {
 
-        ProfileBuilder profileBuilderAnimal1 = new ProfileBuilder().name("Dog").foodType(F.Foods.Carnivorous).talk("Hop Hop")
-                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
-        ProfileBuilder profileBuilderAnimal2 = new ProfileBuilder().name("Cat").foodType(F.Foods.Carnivorous).talk("MIO")
-                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderAnimal1 = new ProfileBuilder().name("Dog").foodType(Foods.Carnivorous).talk("Hop Hop")
+                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
+        ProfileBuilder profileBuilderAnimal2 = new ProfileBuilder().name("Cat").foodType(Foods.Carnivorous).talk("MIO")
+                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
 
         animals1 = Animals.getAnimalsInstance(profileBuilderAnimal1.build());
-        animals1.setAnimalBehavior(AB.AnimalBehavior.Domestic);
+        animals1.setAnimalBehavior(AnimalBehavior.Domestic);
         animals1.setHasBackbone(true);
         animals2 = Animals.getAnimalsInstance(profileBuilderAnimal2.build());
-        animals2.setAnimalBehavior(AB.AnimalBehavior.Domestic);
+        animals2.setAnimalBehavior(AnimalBehavior.Domestic);
         animals2.setHasBackbone(true);
 
 
-        ProfileBuilder profileBuilderHumans1 = new ProfileBuilder().name("Mina").foodType(F.Foods.Vegetarian).talk("Voice")
-                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
-        ProfileBuilder profileBuilderHumans2 = new ProfileBuilder().name("Ali").foodType(F.Foods.Carnivorous).talk("Voice")
-                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
+        ProfileBuilder profileBuilderHumans1 = new ProfileBuilder().name("Mina").foodType(Foods.Vegetarian).talk("Voice")
+                .habitats(Habitats.Beach).birthType(Pregnant.Viviparous);
+        ProfileBuilder profileBuilderHumans2 = new ProfileBuilder().name("Ali").foodType(Foods.Carnivorous).talk("Voice")
+                .habitats(Habitats.Beach).birthType(Pregnant.Viviparous);
         humans1 = Humans.getHumansInstance(profileBuilderHumans1.build());
-        humans1.setGender(G.Gender.Male);
-        humans2 = Humans.getHumansInstance(profileBuilderHumans1.build());
-        humans2.setGender(G.Gender.Male);
+        humans1.setGender(Gender.Male);
+        humans2 = Humans.getHumansInstance(profileBuilderHumans2.build());
+        humans2.setGender(Gender.Male);
 
-        ProfileBuilder profileBuilderBirds1 = new ProfileBuilder().name("ordak").foodType(F.Foods.Vegetarian).talk(" JI JI")
-                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Viviparous);
-        ProfileBuilder profileBuilderBirds2 = new ProfileBuilder().name("Eugle").foodType(F.Foods.Vegetarian).talk("Voice")
-                .habitats(H.Habitats.Beach).birthType(P.Pregnant.Oviparous);
+        ProfileBuilder profileBuilderBirds1 = new ProfileBuilder().name("ordak").foodType(Foods.Vegetarian).talk(" JI JI")
+                .habitats(Habitats.Beach).birthType(Pregnant.Viviparous);
+        ProfileBuilder profileBuilderBirds2 = new ProfileBuilder().name("Eugle").foodType(Foods.Vegetarian).talk("Voice")
+                .habitats(Habitats.Beach).birthType(Pregnant.Oviparous);
 
         birds1 = Birds.getBirdsInstance(profileBuilderBirds1.build());
         birds1.setCanFly(true);
-        birds2 = Birds.getBirdsInstance(profileBuilderBirds1.build());
+        birds2 = Birds.getBirdsInstance(profileBuilderBirds2.build());
         birds2.setCanFly(true);
 
     }
@@ -190,7 +190,7 @@ public class TestDeepCopy {
         Assert.assertNotEquals(birds1.getProfile(), birds2.getProfile());
     }
 
-
+*/
 
 }
 

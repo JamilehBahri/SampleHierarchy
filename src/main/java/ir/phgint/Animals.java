@@ -5,24 +5,25 @@ package ir.phgint;
 import java.io.Serializable;
 
 public class Animals extends Mammals {
-    private AB.AnimalBehavior animalBehavior;
+    private AnimalBehavior animalBehavior;
     private boolean isQuadruped;
 
-    private Animals(Profile profile) {
+    private  Animals(Profile profile) {
         super(profile);
     }
 
-    private Animals(String name, AB.AnimalBehavior animalBehavior, boolean isQuadruped, F.Foods foods, String t,
-                    H.Habitats habitats, P.Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
+
+    private Animals(String name, AnimalBehavior animalBehavior, boolean isQuadruped, Foods foods, String t,
+                    Habitats habitats,Pregnant pregnant, boolean hasHair, boolean hasBackbone) {
         super(name, foods, t, habitats, pregnant, hasHair, hasBackbone);
         this.animalBehavior = animalBehavior;
         this.isQuadruped = isQuadruped;
     }
 
-    private Animals(Animals animals) {
+    private Animals(Animals animals,AnimalBehavior animalBehavior,boolean isQuadruped) {
         super(animals);
-        animalBehavior = animals.animalBehavior;
-        isQuadruped = animals.isQuadruped;
+         animals.animalBehavior = animalBehavior;
+         animals.isQuadruped = isQuadruped;
     }
 
 
@@ -38,22 +39,22 @@ public class Animals extends Mammals {
         return isQuadruped;
     }
 
-    public void setAnimalBehavior(AB.AnimalBehavior value) {
+    public void setAnimalBehavior(AnimalBehavior value) {
         this.animalBehavior = value;
     }
 
-    public AB.AnimalBehavior getAnimalBehavior() {
+    public AnimalBehavior getAnimalBehavior() {
         return animalBehavior;
     }
 
 
-    public F.Foods eat(F.Foods food) {
-        if (food.equals(F.Foods.Carnivorous))
-            return F.Foods.Carnivorous;
-        else if (food.equals(F.Foods.Herbivorous))
-            return F.Foods.Herbivorous;
+    public Foods eat(Foods food) {
+        if (food.equals(Foods.Carnivorous))
+            return Foods.Carnivorous;
+        else if (food.equals(Foods.Herbivorous))
+            return Foods.Herbivorous;
         else
-            return F.Foods.Unknown;
+            return Foods.Unknown;
     }
 
     @Override
