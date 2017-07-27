@@ -2,7 +2,7 @@ package ir.phgint;
 
 import java.io.Serializable;
 
-public abstract class Janevaran implements Cloneable, DeepCopyable, ShallowCopyable, Serializable, Comparable<Janevaran> {
+public abstract class Janevaran implements Cloneable, DeepCopyable<Janevaran>, ShallowCopyable<Janevaran>, Serializable, Comparable<Janevaran> {
 
     private Profile profile;
 

@@ -1,6 +1,6 @@
 package ir.phgint;
 
-public class Animals extends Mammals {
+public class Animals  extends Mammals{
 
     private AnimalBehavior animalBehavior;
     private boolean isQuadruped;
@@ -117,8 +117,6 @@ public class Animals extends Mammals {
         super.deepCopyFrom(animals);
         this.animalBehavior = animals.animalBehavior;
         this.isQuadruped = animals.isQuadruped;
-
-
     }
 
     public Animals deepCopy() {

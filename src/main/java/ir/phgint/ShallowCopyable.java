@@ -1,6 +1,6 @@
 package ir.phgint;
 
-public interface ShallowCopyable {
-    void shallowCopyFrom(Janevaran janevaran);
-    Janevaran shallowCopy() throws CloneNotSupportedException;
+public interface ShallowCopyable <T> {
+    void shallowCopyFrom(T obj);
+    T shallowCopy() throws CloneNotSupportedException;
 }

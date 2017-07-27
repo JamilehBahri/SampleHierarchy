@@ -1,7 +1,8 @@
 package ir.phgint;
 
 
-public interface DeepCopyable {
-    void deepCopyFrom(Janevaran janevaran) throws CloneNotSupportedException;
-    Janevaran deepCopy() throws IllegalAccessException, InstantiationException, CloneNotSupportedException;
+public interface DeepCopyable<T> {
+
+    void deepCopyFrom(T obj) throws CloneNotSupportedException;
+    T deepCopy() throws IllegalAccessException, InstantiationException, CloneNotSupportedException;
 }
