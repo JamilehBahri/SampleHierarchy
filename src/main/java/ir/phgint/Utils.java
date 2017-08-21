@@ -2,45 +2,41 @@ package ir.phgint;
 
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class Utils {
 
-    public static void serializ(String filename,Object[] objects) {
+    public static void serializ(String filename, List<Humans> humansList) {
         try {
-            DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
-
-            for (Object obj : objects)
-            {
-                out.writeUTF(obj.toString());
-            }
-            out.flush();
+            FileOutputStream fos = new FileOutputStream(filename);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(humansList);
             System.out.println("Data successfully written to a file");
-
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 
-    public static void dSerializ(String filename)
-    {
+    public static List<Humans> deSerializ(String filename) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
-            StringBuffer fileData = new StringBuffer();
-            char[] buf = new char[1024];
-            int numRead=0;
-            while((numRead=reader.read(buf)) != -1){
-                String readData = String.valueOf(buf, 0, numRead);
-                fileData.append(readData);
-            }
-            reader.close();
-            System.out.println(fileData);
+            List<Humans> humansList = new ArrayList<Humans>();
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            humansList = (List<Humans>) ois.readObject();
+            ois.close();
+            fis.close();
+            return humansList;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
 
