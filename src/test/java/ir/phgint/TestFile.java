@@ -38,13 +38,30 @@ public class TestFile {
         objectsHuman.add(humans1);
         objectsHuman.add(humans2);
         objectsHuman.add(humans3);
-        Utils.serializ("human.ser", objectsHuman);
+        Utils.serialize("human.ser", objectsHuman);
     }
 
     @Test
     public void readBinaryFromHumanFile() {
 
-        System.out.println(Utils.deSerializ("human.ser"));
+        System.out.println(Utils.deSerialize("human.ser"));
+    }
+
+
+    @Test
+    public void writeBinaryToHumanFile2() {
+
+        List<Humans> objectsHuman = new ArrayList<Humans>();
+        objectsHuman.add(humans1);
+        objectsHuman.add(humans2);
+        objectsHuman.add(humans3);
+        Utils.serialize2("s.ser",objectsHuman);
+
+    }
+
+    @Test
+    public void readBinaryFromHumanFile2() {
+        System.out.println(Utils.deSerialize2("s.ser"));
     }
 
 }
