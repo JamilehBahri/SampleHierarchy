@@ -55,13 +55,14 @@ public class TestFile {
         objectsHuman.add(humans1);
         objectsHuman.add(humans2);
         objectsHuman.add(humans3);
-        Utils.serialize2("s.ser",objectsHuman);
+        Utils.serialize2("human.ser",objectsHuman);
 
     }
 
     @Test
     public void readBinaryFromHumanFile2() {
-        System.out.println(Utils.deSerialize2("s.ser"));
+
+        System.out.println(Utils.deSerialize2("human.ser"));
     }
 
 }

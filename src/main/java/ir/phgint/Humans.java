@@ -1,5 +1,8 @@
 package ir.phgint;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Humans extends Mammals {
 
     private Ages age;

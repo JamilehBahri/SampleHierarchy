@@ -3,9 +3,7 @@ package ir.phgint;
 
 import java.io.*;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Utils {
 
@@ -42,14 +40,19 @@ public class Utils {
 
     public static void serialize2(String filename, List<Humans> humansList) {
         try {
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(bos);
+//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//            ObjectOutput out = new ObjectOutputStream(bos);
             FileOutputStream fos = new FileOutputStream(filename);
             for (Humans humans : humansList) {
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                ObjectOutput out = new ObjectOutputStream(bos);
                 out.writeObject(humans);
                 out.flush();
+
                 byte[] humansBytes = bos.toByteArray();
                 byte[] a = intToByteArray(humansBytes.length);
+                out.close();
+                bos.close();
                 fos.write(a);
                 fos.write(humansBytes);
             }
@@ -59,50 +62,56 @@ public class Utils {
     }
 
     public static List<Humans> deSerialize2(String filename) {
-        List<Humans> humansList = new ArrayList<Humans>();
         try {
             File file = new File(filename);
             FileInputStream fis = new FileInputStream(file);
-//            byte[] buffer = new byte[(int) file.length()];
-//            fis.read(buffer, 0, buffer.length);
+
+
+            Map<Integer,FileInfo> fileInfoMap = new Hashtable<>(3);
+
             byte[] headobj = new byte[4];
-            fis.read(headobj, 0, 3);
-            int head = getInt(headobj);
 
-            byte[] buffer = new byte[head];
-            fis.read(buffer, 4, (buffer.length) - 1);
+            int offset =4;
+            int headerLength = 4;
+            int index = 0;
+            while(fis.available() != 0) {
+                fis.read(headobj, 0, headobj.length);
+                int lenObject = getInt(headobj);
+                FileInfo fileInfo = new FileInfo();
+                fileInfo.item = index;
+                fileInfo.len = lenObject;
+                fileInfo.offset =offset;
+                byte[] tmp = new byte[lenObject];
+                fis.read(tmp, 0, lenObject);
+                fileInfoMap.put(index, fileInfo);
+                index++;
+                offset += lenObject+headerLength;
+            }
+            fis.close();
 
-            ByteArrayInputStream bis = new ByteArrayInputStream(buffer);
-            ObjectInput in = new ObjectInputStream(bis);
-            Humans humans = (Humans) in.readObject();
-
-            System.out.println(humans);
+            RandomAccessFile randomAccessFile = new RandomAccessFile(filename, "r");
+            final List<Humans> humansList = new ArrayList<Humans>(index);
 
 
-//            for (int X : buffer) {
-//                System.out.print((char) X);
-//            }
-//            int head = java.nio.ByteBuffer.wrap(headobj).order(java.nio.ByteOrder.LITTLE_ENDIAN).getInt();
-//            ByteArrayOutputStream  bis = new ByteArrayOutputStream ();
-//            int read = 0;
-//            while ((read = fis.read(buffer)) != -1) {
-//                bis.write(buffer, 0, read);
-//            }
-//            byte[] a=   bis.toByteArray();
-//            System.out.println(a);
-//            ObjectInput in = new ObjectInputStream(bis);
-//            Humans humans= (Humans) in.readObject();
-//            System.out.println(fis);
-//            ByteArrayInputStream bis = new ByteArrayInputStream(b);
-//            ObjectInput in = new ObjectInputStream(bis);
-//              Humans humans= (Humans) ois.readObject();
-//            ByteArrayInputStream bis = new ByteArrayInputStream(b);
-//            ObjectInput in = new ObjectInputStream(bis);
-//            humansList = (List<Humans>) in;
+            fileInfoMap.forEach((idx, fileInfo) -> {
+                try {
+                    randomAccessFile.seek(fileInfo.offset);
+                    byte[] buf = new byte[fileInfo.len];
+                    randomAccessFile.read(buf, 0, fileInfo.len);
+                    ByteArrayInputStream bis = new ByteArrayInputStream(buf);
+                    ObjectInput in = new ObjectInputStream(bis);
+                    Humans humans = (Humans) in.readObject();
+                    humansList.add(humans);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            humansList.forEach(System.out::println);
 
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -123,5 +132,15 @@ public class Utils {
                 (byte) (value >>> 8),
                 (byte) value};
     }
+
+    private static class FileInfo {
+
+        private int item ;
+        private int offset ;
+        private int len;
+
+
+    }
+
 }
 
