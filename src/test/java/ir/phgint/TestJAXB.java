@@ -36,8 +36,6 @@ public class TestJAXB {
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT , true);
             marshaller.marshal(humans1, new FileOutputStream("human.xml"));
-//            marshaller.marshal(humans2, new FileOutputStream("human.xml"));
-
 
         } catch (JAXBException e) {
             e.printStackTrace();
