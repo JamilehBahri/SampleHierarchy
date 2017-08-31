@@ -19,6 +19,8 @@ public class TestCodingStrategy {
     private Janevaran.Profile profileHumans;
     private Janevaran.Profile profileBirds;
 
+
+
     @Before
     public void initObjectJanevaran() {
 
@@ -38,14 +40,17 @@ public class TestCodingStrategy {
 
     @Test
     public void serializeXmlTest() {
-        CodingStrategy<String> codingStrategy = new XmlCodingStrategy();
+
+        CodingStrategy<String> codingStrategy;
+        codingStrategy = StrategyCodingFactory.codingStrategyFactory(StrategyCodingFactory.CodingStrategyType.xml);
         String res = codingStrategy.serialize(humans);
         saveFileText(res, "XmlFile", ".xml");
     }
 
     @Test
     public void deserializeXmlTest() {
-        CodingStrategy<String> codingStrategy = new XmlCodingStrategy();
+        CodingStrategy<String> codingStrategy;
+        codingStrategy = StrategyCodingFactory.codingStrategyFactory(StrategyCodingFactory.CodingStrategyType.xml);
         String data = readFileTextWithFileReader("XmlFile", ".xml");
         Humans res = (Humans) codingStrategy.deserialize(data);
         System.out.println(res);
@@ -53,14 +58,16 @@ public class TestCodingStrategy {
 
     @Test
     public void serializGsonTest() {
-        CodingStrategy<String> codingStrategy = new GsonCodingStrategy();
+        CodingStrategy<String> codingStrategy;
+        codingStrategy = StrategyCodingFactory.codingStrategyFactory(StrategyCodingFactory.CodingStrategyType.gson);
         String res = codingStrategy.serialize(humans);
         saveFileText(res, "GsonFile", ".txt");
     }
 
     @Test
     public void deserializeGsonTest() {
-        CodingStrategy<String> codingStrategy = new GsonCodingStrategy();
+        CodingStrategy<String> codingStrategy;
+        codingStrategy = StrategyCodingFactory.codingStrategyFactory(StrategyCodingFactory.CodingStrategyType.gson);
         String data = readFileTextWithFileReader("GsonFile", ".txt");
         Humans res = (Humans)codingStrategy.deserialize(data);
         System.out.println(res);
@@ -68,14 +75,16 @@ public class TestCodingStrategy {
 
     @Test
     public void serializBinaryTest() {
-        CodingStrategy<byte[]> codingStrategy = new BinaryCodingStrategy();
+        CodingStrategy<byte[]> codingStrategy;
+        codingStrategy = StrategyCodingFactory.codingStrategyFactory(StrategyCodingFactory.CodingStrategyType.binary);
         byte[] res = codingStrategy.serialize(humans);
         saveFileBinary(res, "BinaryFile", ".bin");
     }
 
     @Test
     public void deserializeBinaryTest() {
-        CodingStrategy<byte[]> codingStrategy = new BinaryCodingStrategy();
+        CodingStrategy<byte[]> codingStrategy;
+        codingStrategy = StrategyCodingFactory.codingStrategyFactory(StrategyCodingFactory.CodingStrategyType.binary);
         byte[] data =  readFileBinary("BinaryFile", ".bin");
         Humans res = (Humans) codingStrategy.deserialize(data);
         System.out.println(res);
@@ -90,7 +99,12 @@ public class TestCodingStrategy {
         String data3 = readFileTextWithFile("XmlFile", ".xml");
         System.out.println(data3);
     }
+    @Test
+    public void FactoryTest() {
+        CodingStrategy codingStrategy;
+        codingStrategy = StrategyCodingFactory.codingStrategyFactory(StrategyCodingFactory.CodingStrategyType.xml);
 
+    }
     private byte[] readFileBinary(String filename, String type) {
         try {
             FileInputStream fis = new FileInputStream(filename + type);
