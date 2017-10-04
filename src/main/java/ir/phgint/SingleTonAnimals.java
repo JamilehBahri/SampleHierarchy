@@ -1,5 +1,8 @@
 package ir.phgint;
 
+import ir.phgint.Classes.Mammals;
+import ir.phgint.Classes.ProfileBuilder;
+
 public class SingleTonAnimals extends Mammals {
 
     private  static final SingleTonAnimals INSTANCE = new SingleTonAnimals();

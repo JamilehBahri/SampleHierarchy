@@ -1,10 +1,11 @@
 package ir.phgint;
 
 
+import ir.phgint.Classes.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ir.phgint.Janevaran.*;
+import ir.phgint.Classes.Janevaran.*;
 
 
 public class TestClone {
@@ -44,6 +45,7 @@ public class TestClone {
         }
 
     }
+
     @Test
     public void animalsCloneRefTest(){
         try {

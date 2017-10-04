@@ -1,11 +1,14 @@
 package ir.phgint;
-import ir.phgint.Janevaran.*;
-import org.junit.Assert;
+import ir.phgint.Classes.Animals;
+import ir.phgint.Classes.AnimalsBuilder;
+import ir.phgint.Classes.Janevaran;
+import ir.phgint.Classes.Janevaran.*;
+import ir.phgint.Classes.ProfileBuilder;
+import ir.phgint.Copyables.CopyUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class TestCopyUtils {

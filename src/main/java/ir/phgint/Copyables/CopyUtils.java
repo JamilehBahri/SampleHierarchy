@@ -1,6 +1,5 @@
-package ir.phgint;
+package ir.phgint.Copyables;
 
-import java.util.Collection;
 import java.util.List;
 
 

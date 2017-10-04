@@ -1,4 +1,8 @@
-package ir.phgint;
+package ir.phgint.Classes;
+
+import ir.phgint.Copyables.DeepCopyable;
+import ir.phgint.Copyables.ShallowCopyable;
+import ir.phgint.SingleTonBirds;
 
 import java.io.Serializable;
 
@@ -113,7 +117,7 @@ public abstract class Janevaran implements Cloneable, DeepCopyable<Janevaran>, S
     }
     //inner class
 
-    enum Ages {
+    public  enum Ages {
         Baby,
         Child,
         Teenager,
@@ -124,25 +128,25 @@ public abstract class Janevaran implements Cloneable, DeepCopyable<Janevaran>, S
 
     }
 
-    enum AnimalBehavior {
+    public enum AnimalBehavior {
         Wild,
         Domestic,
         Unknown
     }
 
-    enum Foods {
+    public enum Foods {
         Vegetarian,
         Herbivorous,
         Carnivorous,
         Unknown
     }
 
-    enum Gender {
+    public enum Gender {
         Male,
         Female
     }
 
-    enum Habitats {
+    public enum Habitats {
         Dry,
         Water,
         Beach,
@@ -152,11 +156,11 @@ public abstract class Janevaran implements Cloneable, DeepCopyable<Janevaran>, S
 
     }
 
-    enum ObjectType {
+    public enum ObjectType {
         ANIMALS, HUMANS, BIRDS
     }
 
-    enum Pregnant {
+    public enum Pregnant {
         Viviparous,// bacheza
         Oviparous,//tokhmghozar
         Marsupial//kisedar

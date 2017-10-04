@@ -1,6 +1,6 @@
-package ir.phgint;
+package ir.phgint.Classes;
 
-import ir.phgint.Janevaran.*;
+import ir.phgint.Classes.Janevaran.*;
 
 import java.security.InvalidParameterException;
 

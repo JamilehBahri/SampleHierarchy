@@ -1,6 +1,7 @@
 package ir.phgint;
 
-import ir.phgint.Janevaran.*;
+import ir.phgint.Classes.*;
+import ir.phgint.Classes.Janevaran.*;
 import org.junit.Before;
 import org.junit.Test;
 

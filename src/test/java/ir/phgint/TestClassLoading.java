@@ -1,7 +1,7 @@
 package ir.phgint;
 
+import ir.phgint.Classes.Animals;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 /**

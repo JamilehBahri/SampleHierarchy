@@ -1,11 +1,7 @@
-package ir.phgint;
+package ir.phgint.CodingStrategys;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
 
 public class BinaryCodingStrategy implements CodingStrategy<byte[]> {
     @Override

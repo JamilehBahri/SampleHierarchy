@@ -1,12 +1,12 @@
 package ir.phgint;
 
-import com.google.gson.Gson;
+import ir.phgint.Classes.*;
+import ir.phgint.CodingStrategys.CodingStrategy;
+import ir.phgint.CodingStrategys.StrategyCodingFactory;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class TestCodingStrategy {

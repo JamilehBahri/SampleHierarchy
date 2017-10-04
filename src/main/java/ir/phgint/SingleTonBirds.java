@@ -1,6 +1,8 @@
 package ir.phgint;
 
 
+import ir.phgint.Classes.Janevaran;
+import ir.phgint.Classes.ProfileBuilder;
 
 public class SingleTonBirds extends Janevaran {
     private boolean canFly;

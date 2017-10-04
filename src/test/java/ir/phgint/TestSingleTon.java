@@ -2,7 +2,7 @@ package ir.phgint;
 
 import org.junit.Assert;
 import org.junit.Before;
-import ir.phgint.Janevaran.*;
+import ir.phgint.Classes.Janevaran.*;
 import org.junit.Test;
 
 public class TestSingleTon {

@@ -1,5 +1,5 @@
-package ir.phgint;
-import ir.phgint.Janevaran.*;
+package ir.phgint.Classes;
+import ir.phgint.Classes.Janevaran.*;
 
 public class HumansBuilder {
 

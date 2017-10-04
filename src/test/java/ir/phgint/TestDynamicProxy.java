@@ -1,8 +1,13 @@
 package ir.phgint;
 
+import ir.phgint.Classes.AnimalsBuilder;
+import ir.phgint.Classes.Janevaran;
+import ir.phgint.Classes.ProfileBuilder;
+import ir.phgint.Copyables.DeepCopyable;
+import ir.phgint.Copyables.ShallowCopyable;
 import org.junit.Before;
 import org.junit.Test;
-import ir.phgint.Janevaran.*;
+import ir.phgint.Classes.Janevaran.*;
 
 import java.lang.reflect.Proxy;
 

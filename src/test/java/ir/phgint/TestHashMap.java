@@ -1,12 +1,15 @@
 package ir.phgint;
 
+import ir.phgint.Classes.Animals;
+import ir.phgint.Classes.AnimalsBuilder;
+import ir.phgint.Classes.ProfileBuilder;
 import org.junit.Assert;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import ir.phgint.Janevaran.*;
+import ir.phgint.Classes.Janevaran.*;
 import org.junit.Test;
 
 public class TestHashMap {

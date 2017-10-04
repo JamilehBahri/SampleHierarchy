@@ -3,6 +3,10 @@ package ir.phgint;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import ir.phgint.Classes.Humans;
+import ir.phgint.Classes.HumansBuilder;
+import ir.phgint.Classes.Janevaran;
+import ir.phgint.Classes.ProfileBuilder;
 import org.junit.Before;
 import org.junit.Test;
 

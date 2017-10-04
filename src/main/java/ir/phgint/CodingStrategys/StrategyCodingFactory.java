@@ -1,4 +1,4 @@
-package ir.phgint;
+package ir.phgint.CodingStrategys;
 
 
 public class StrategyCodingFactory {

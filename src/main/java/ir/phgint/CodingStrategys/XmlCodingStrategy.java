@@ -1,16 +1,13 @@
-package ir.phgint;
+package ir.phgint.CodingStrategys;
 
 
-import com.sun.xml.internal.ws.streaming.DOMStreamReader;
+import ir.phgint.Classes.Humans;
+import ir.phgint.CodingStrategys.CodingStrategy;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.XMLStreamWriter;
-import javax.xml.transform.Result;
-import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 
 public class XmlCodingStrategy implements CodingStrategy<String> {

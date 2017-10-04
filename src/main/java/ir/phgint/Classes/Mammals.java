@@ -1,4 +1,4 @@
-package ir.phgint;
+package ir.phgint.Classes;
 
 public abstract class Mammals extends Janevaran {
 

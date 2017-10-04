@@ -1,6 +1,6 @@
-package ir.phgint;
+package ir.phgint.Classes;
 
-public class Animals  extends Mammals{
+public class Animals  extends Mammals {
 
     private AnimalBehavior animalBehavior;
     private boolean isQuadruped;

@@ -1,4 +1,4 @@
-package ir.phgint;
+package ir.phgint.Copyables;
 
 
 public interface DeepCopyable<T> {
